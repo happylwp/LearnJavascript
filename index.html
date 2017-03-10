@@ -1,0 +1,95 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test setTimeout</title>
+	<script type="text/javascript">
+		var clickButton=document.getElementById('add');
+		var clickCount=0;
+		var t=0;
+		clickButton.addEventListener('click',function(e){
+			e.preventDefault();
+			clickCount=clickCount+1;
+			if(clickCount%2===1){
+				function add(){
+			clickButton.value=c;
+			c=c+1;
+			t=setTimeout("add()",1000);
+		}
+			}else{
+				function delete(){
+			clearTimeout(t);
+		}
+			}
+		},false);
+
+		function delete(){
+			document.getElementById('add').
+		}
+	</script>
+</head>
+<body>
+	<button onclick="add()">开始</button>
+	<input type="text" id="add" />
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	
+div.search {padding: 30px 0}
+form {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+	
+.d7:after {content:""; clear:both; display:table}
+.d7 form {
+  width: auto;
+  float: right;
+  margin-right: 30px;
+}
+.d7 input {
+  width: 250px;
+  height: 42px;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 2px solid #324b4e;
+  background: #F9F0DA;
+  outline: none;
+  position: relative;
+  transition: .3s linear;
+}
+.d7 input:focus {
+  width: 300px;
+}
+.d7 button {
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  position: absolute;
+  top: -2px;
+  right: 0;
+}
+.d7 button:before{
+  content: "\f002";
+  font-family: FontAwesome;
+  color: #324b4e;
+}
+	</style>
+</head>
+<body>
+	<div class="search d7">
+		<form>
+		  <input type="text" placeholder="搜索从这里开始...">
+		  <button type="submit"></button>
+		</form>
+	</div>
+</body>
+</html>

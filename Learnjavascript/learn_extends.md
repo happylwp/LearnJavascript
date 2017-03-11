@@ -22,25 +22,23 @@
      }
    ```
    3.工厂模式创建
-   
-  	```
-    function createGF(name,bar){
-	     var o=new Object();
-	     o.name=name;
-	     o.bar=bar;
-	     o.saywhat=function () {
-	         alert(this.name+"said :you love forever");
-	     };
-		   return 0;
-		}
-	 	var gf1=createGF("maroon","javascript");
-   	```
-    
+   ```js
+    function createGF(name,bar){
+             var o=new Object();
+             o.name=name;
+             o.bar=bar;
+             o.saywhat=function () {
+                 alert(this.name+"said :you love forever");
+             };
+               return 0;
+            }
+            var gf1=createGF("maroon","javascript");
+```    
     
     
    4.构造函数
    
-   ``` js
+   ```js
      function GF(name,bar){
         this.name=name;
         this.bar=bar;
@@ -56,7 +54,7 @@
 
    1.原型模式中，不必再构造函数中定义实例属性，可以将属性信息直接敷于原型对象；
    
-   ``` js
+   ```js
    	 
 	 function Gf(){
 	     Gf.prototype.name = "vivian";
@@ -76,7 +74,7 @@
    
    4.每定义一个函数，就会同时为其创建一个prototype对象，这个对象也会自动获取一个新的constructor属性，但是为该函数创建一个新的原型对象，新的原型函数对象会重写原有的constructor属性；
    
-   ``` js
+   ```js
         function Foo(){}
         Foo.prototype={
               name:"maroon",
@@ -93,12 +91,12 @@
      
    解决办法：在新创建的原型函数中添加上constructor属性
    
-   ``` js
+   ```js
      function Foo(){}
      Foo.prototype={
         constructor:Foo,
         name:"maroon",
-        bar:"javascript"
+        bar:"javascript",
         sayWaht:function(){
             alert(this.name+"said : love yu forever");
         }
@@ -106,4 +104,100 @@
      var a=new Foo();
      console.log(a.constructor==Foo);
    ```
-# 
+## 对象间继承方法：
+
+   1.构造函数绑定（使用call或者apply，bind将父元素上的公共属性绑定到子对象上）
+   ```js
+function Animals(){
+   this.specils="动物";
+}
+function Cats(name,color){
+   this.name=name;
+   this.color=color;
+   Animals.apply(this,arguments);
+}
+var cat1=new Cats("大毛","黄色");
+console.log(cat1.specils);//;动物
+```
+       
+   2.prototype模式（首先创建Cats，Animal构造函数，
+   然后重写Cats的原型函数将父对象属性和方法继承过来，
+   但是还需要将Cats的constructor属性重新赋值，不然，Cats将会丢失该属性）；
+  ```js
+function Animal() {
+  this.species="动物";
+}
+function Cats(name,color) {
+  this.name=name;
+  this.color=color;
+}
+Cats.prototype=new Animal();//将Animal的属性和方法继承过来，
+Cats.prototype.constructor=Cats;//因为上一步重写Cats的原型属性，所以需要给constructor属性赋值，不然会丢失constructor属性
+var cat1=new Cats("loner11","蓝色");
+console.log(cat1.species);//动物
+```
+   3.直接继承prototype属性
+   ```js
+function Animal() {}
+Animal.prototype.species="动物";
+function Cats(name,color) {
+  this.name=name;
+  this.color=color;
+}
+Cats.prototype=Animal.prototype;
+Cats.prototype.constructor=Cats;
+var cat1=new Cats("loner11","蓝色");
+console.log(cat1.species);//动物
+console.log(cat1.constructor==Cats);//true;
+//缺陷：因为将Cats的原型指向Animal原型，当修改Cats的原型属性的species，Animal也将被修改
+```
+
+   4.使用空对象做介质继承prototype属性
+   ```js
+function Animal() {}
+Animal.prototype.species="动物";
+function Cats(name,color) {
+  this.name=name;
+  this.color=color;
+}
+
+var F=function() {};
+F.prototype=Animal.prototype;
+Cats.prototype=new F();
+Cats.prototype.constructor=Cats;
+
+var cat1=new Cats("loner11","蓝色");
+console.log(cat1.species);
+
+
+// **优化空对象实现prototype属性继承**
+function Extends(child,parent) {
+  var F=function() {};
+  F.prototype=parent.prototype;
+  child.prototype=new F();
+  child.prototype.constructor=child;
+}
+Extends(Cats,Animal);
+var cat1=new Cats("loner11","蓝色");
+console.log(cat1.species);
+```
+   5."通过拷贝"对象的方法实现继承
+   ```js
+function Animal() {};
+Animal.prototype.species="动物";
+function Cats(name,color) {
+  this.name=name;
+  this.color=color;
+}
+function Extend(child,parent) {
+  var p=parent.prototype;
+  var c=child.prototype;
+  for(var i in p){
+      c[i]=p[i];
+  }
+  c.prototype=p;
+}
+Extend(Cats,Animal);
+var cat1=new Cats("loner11","蓝色");
+console.log(cat1.species);
+```

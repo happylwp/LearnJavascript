@@ -158,15 +158,89 @@
 
 // 对象间继承方法：
 // 1.构造函数绑定（使用call或者apply将父对象上的属性和方法绑定到子对象上）
-function Animal() {
-    this.species="动物";
-}
+// function Animal() {
+//     this.species="动物";
+// }
+//
+// function Cats(name,color) {
+//     this.name=name;
+//     this.color=color;
+//     Animal.bind(this,arguments)();
+// }
+//
+// var cat1=new Cats("大毛","黄色");
+// console.log(cat1.species);
 
+// 2.prototype模式（首先创建Cats，Animal构造函数，
+// 然后重写Cats的原型函数将父对象属性和方法继承过来，但是还需要将Cats的constructor属性重新赋值，不然，Cats将会丢失该属性）；
+// function Animal(){
+//     this.species="动物";
+// }
+// function Cats(name,color) {
+//     this.name=name;
+//     this.color=color;
+// }
+// Cats.prototype=new Animal();
+// Cats.prototype.constructor=Cats;
+// var cat1=new Cats("大毛","黄色");
+// console.log(cat1.species);
+// console.log(cat1.constructor==Cats);
+
+// 3.直接继承prototype（）
+// function Animal() {}
+// Animal.prototype.species="动物";
+// function Cats(name,color) {
+//     this.name=name;
+//     this.color=color;
+// }
+// Cats.prototype=Animal.prototype;
+//使Cats的原型指向Animal原型，
+// 当修改Cats原型也将修改Animal原型；
+// Cats.prototype.constructor=Cats;
+// var cat1=new Cats("大毛","黄色");
+// console.log(cat1.species);
+
+// 4.使用空对象作为中介
+// function Animal() {}
+// Animal.prototype.species="动物";
+// function Cats(name,color) {
+//     this.name=name;
+//     this.color=color;
+// }
+//
+// var F=function () {};
+// F.prototype=Animal.prototype;
+// Cats.prototype=new F();
+// Cats.prototype.constructor=Cats;
+// console.log(Animal.prototype.constructor);//Animal
+// 将上述创建空对象过度的方法进行封装
+// function extend(Child,Parents){
+//     var F=function () {};
+//     F.prototype=Parents.prototype;
+//     Child.prototype=new F();
+//     Child.prototype.constructor=Child;
+//     // Child.uber=Parents.prototype;
+// }
+// extend(Cats,Animal);
+// var cat1=new Cats("大毛","蓝色");
+// console.log(cat1.species);
+
+
+// 5.拷贝继承（采用"拷贝方法"）
+function Animal(){}
+Animal.prototype.species="动物";
 function Cats(name,color) {
     this.name=name;
     this.color=color;
-    Animal.bind(this,arguments)();
 }
-
-var cat1=new Cats("大毛","黄色");
+function extend(child,parent) {
+    var p=parent.prototype;
+    var c=child.prototype;
+    for(var i in p){
+        c[i]=p[i];
+    }
+    c.prototype=p;
+}
+extend(Cats,Animal);
+var cat1=new Cats("大毛","蓝色");
 console.log(cat1.species);

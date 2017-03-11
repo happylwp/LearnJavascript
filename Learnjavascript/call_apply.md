@@ -1,6 +1,7 @@
 ###call and apply important
-    共同点：将当前的obj绑定到thisObj，这时候thisObj具备obj的属性方法。（thisObj继承obj属性和方法）绑定后会立即执行；
-    不同点：apply接受的参数是：数组，call接受的是连续参数；
+   ####共同点：将当前的obj绑定到thisObj，这时候thisObj具备obj的属性方法。（thisObj继承obj属性和方法）绑定后会立即执行；
+    
+   ####不同点：apply接受的参数是：数组，call接受的是连续参数；
     
     obj.call(this.Obj,arg1,arg2,...);
     obj.apply(this.obj,arg1,arg2,..);
@@ -34,5 +35,4 @@
    ##### bind使用：
         bind绑定后不会立即执行；同样是add(),sub();
         add.bind(sub,5,3);
-        sub.bind(add,5,3)();//返回8；
-   ###   
+        sub.bind(add,5,3)();//返回8；  

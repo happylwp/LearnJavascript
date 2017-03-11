@@ -114,26 +114,59 @@
 // var gf2 = new Gf();
 
 // 使用原型对象：
-function GF() {}
-GF.prototype={
-    name:"",
-    bar:"",
-    saywhat:function () {
-        alert(this.name+"said : love you forever");
-    }
-}
+// function GF() {}
+// GF.prototype={
+//     name:"",
+//     bar:"",
+//     saywhat:function () {
+//         alert(this.name+"said : love you forever");
+//     }
+// }
 // var gf1=new GF();
-// console.log(gf1.constructor==GF);
-// console.log(gf1.constructor==Object);
+// console.log(gf1.constructor==GF);//结果为false；
+//第一个GF()函数在声明时自动生成一个constructor属性，紧接着GF.prototype创建一个新的原型对象，
+//本质上复写原有的prototype对象，因此新的对象也有constructor属性
 
+// 解决上面重新创建一个原型函数覆盖原有的constructor属性问题：
+// function GF(){}
 // GF.prototype={
 //     constructor:GF,
 //     name:"maroon",
 //     bar:"javascript",
+//     sayWhat:function (){
+//         alert(this.name+"said :love you forever");
+//     }
+// };
+//
+// var a=new GF();
+// console.log(a.constructor==GF);
+
+
+// 构造函数和原型组合
+//     使用构造函数来定义对象的属性，原型函数来定义共享的属性和方法，
+// function GF(name,bar){
+//     this.name=name;
+//     this.bar=bar;
+// }
+// GF.prototype={
+//     constructor:GF,
 //     sayWhat:function () {
 //         alert(this.name+"said : love you forever");
 //     }
-// }
+// };
 
-var gf1=new GF();
-console.log(gf1.constructor==GF);
+
+// 对象间继承方法：
+// 1.构造函数绑定（使用call或者apply将父对象上的属性和方法绑定到子对象上）
+function Animal() {
+    this.species="动物";
+}
+
+function Cats(name,color) {
+    this.name=name;
+    this.color=color;
+    Animal.bind(this,arguments)();
+}
+
+var cat1=new Cats("大毛","黄色");
+console.log(cat1.species);

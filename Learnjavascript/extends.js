@@ -227,20 +227,20 @@
 
 
 // 5.拷贝继承（采用"拷贝方法"）
-function Animal(){}
-Animal.prototype.species="动物";
-function Cats(name,color) {
-    this.name=name;
-    this.color=color;
-}
-function extend(child,parent) {
-    var p=parent.prototype;
-    var c=child.prototype;
-    for(var i in p){
-        c[i]=p[i];
-    }
-    c.prototype=p;
-}
-extend(Cats,Animal);
-var cat1=new Cats("大毛","蓝色");
-console.log(cat1.species);
+// function Animal(){}
+// Animal.prototype.species="动物";
+// function Cats(name,color) {
+//     this.name=name;
+//     this.color=color;
+// }
+// function extend(child,parent) {
+//     var p=parent.prototype;
+//     var c=child.prototype;
+//     for(var i in p){
+//         c[i]=p[i];
+//     }
+//     c.prototype=p;
+// }
+// extend(Cats,Animal);
+// var cat1=new Cats("大毛","蓝色");
+// console.log(cat1.species);

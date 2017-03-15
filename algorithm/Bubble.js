@@ -1,3 +1,4 @@
+// 冒泡排序
 function CArray(numElements) {
     this.dataStore=[];
     this.pos=0;
@@ -15,7 +16,7 @@ function CArray(numElements) {
 
 function setData() {
     for(var i=0;i<this.numElements;i++){
-        this.dataStore[i]=Math.floor(Math.random()*(this.numElements+1));
+        this.dataStore[i]=Math.floor(Math.random()*(this.numElements));
     }
 }
 
@@ -32,7 +33,7 @@ function insert(element) {
 function toString() {
     var restr=" ";
     for(var i=0;i<this.dataStore.length;++i) {
-        restr +=this.dataStore[i]+"";
+        restr +=this.dataStore[i]+" ";
         if(i>0 && i%10==0){
             restr+="\n";
         }
@@ -47,18 +48,19 @@ function swap(arr,index1,index2) {
 }
 function bubbleSort() {
     var numElements=this.dataStore.length;
-    var temp;
     for(var outer=numElements;outer>=2;--outer){
         for(var inner=0;inner<=outer-1;++inner){
             if(this.dataStore[inner]>this.dataStore[inner+1]){
                 swap(this.dataStore,inner,inner+1);
             }
         }
+        console.log(this.toString());
     }
 }
 
 var numElements=10;
 var mynums=new CArray(numElements);
+
 mynums.setData();
 console.log(mynums.toString());
 

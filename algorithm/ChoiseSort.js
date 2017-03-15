@@ -1,21 +1,20 @@
-// 插入排序
-function CArray(numElements) {
+function CArray(numElement) {
     this.dataStore=[];
     this.pos=0;
-    this.numElements=numElements;
+    this.numElements=numElement;
     this.insert=insert;
     this.toString=toString;
     this.clear=clear;
     this.setData=setData;
     this.swap=swap;
-    this.insterionSort=insterionSort;
-    for(var i=0;i<numElements;++i){
+    this.selectionSort=selectionSort;
+    for(var i=0;i<numElement.length;++i){
         this.dataStore[i]=i;
     }
 }
 
 function setData() {
-    for(var i=0;i<this.numElements;i++){
+    for(var i=0;i<this.numElements.length;++i){
         this.dataStore[i]=Math.floor(Math.random()*(this.numElements+1));
     }
 }
@@ -25,16 +24,15 @@ function clear() {
         this.dataStore[i]=0;
     }
 }
-
 function insert(element) {
     this.dataStore[this.pos++]=element;
 }
-
 function toString() {
-    var restr=" ";
-    for(var i=0;i<this.dataStore.length;++i) {
-        restr +=this.dataStore[i]+"";
-        if(i>0 && i%10==0){
+    var restr="";
+    for(var i=0;i<this.dataStore.length;++i){
+        restr+=this.dataStore[i]+" ";
+        if(i>0 && i%10==0)
+        {
             restr+="\n";
         }
     }
@@ -47,24 +45,23 @@ function swap(arr,index1,index2) {
     arr[index2]=temp;
 }
 
-function insterionSort() {
-    var temp,inner;
-    for(var outer=1;outer<=this.dataStore.length-1;++outer){
-        temp=this.dataStore[outer];
-        inner=outer;
-        while (inner>0&&(this.dataStore[inner-1]>=temp)){
-            this.dataStore[inner]=this.dataStore[inner-1];
-            --inner;
+function selectionSort() {
+    var min,temp;
+    for(var outer=0;outer<=this.dataStore.length-2;++outer){
+        min=outer;
+        for(var inner=outer+1;inner<=this.dataStore.length-1;++inner){
+            if(this.dataStore[inner]<this.dataStore[min]){
+                min=inner;
+            }
+            swap(this.dataStore,outer,min);
+            console.log(this.toString());
         }
-        this.dataStore[inner]=temp;
     }
 }
-
-
 var numElements=10;
 var mynums=new CArray(numElements);
 mynums.setData();
-console.log(mynums.toString());
+// console.log(mynums.toString());
 
-mynums.insterionSort();
+mynums.selectionSort();
 console.log(mynums);

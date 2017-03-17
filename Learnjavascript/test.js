@@ -1,3 +1,4 @@
+'use strict';
 // 对象处理
 //JavaScript对象是动态的，可以新增，也可以删除；
 // var xiaoming = {
@@ -36,14 +37,14 @@
 
 // 垃圾收集
 /*
-function process(data) {
-}
-var something={};
-process(something);
-var btn=document.getElementById("my_button");
-btn.addEventListener("click",function click() {
-    console.log("button clicked");
-}, /!*capturingPhase=*!/false);*/
+ function process(data) {
+ }
+ var something={};
+ process(something);
+ var btn=document.getElementById("my_button");
+ btn.addEventListener("click",function click() {
+ console.log("button clicked");
+ }, /!*capturingPhase=*!/false);*/
 
 
 // 使用reduce计算数组的乘积；
@@ -148,13 +149,156 @@ btn.addEventListener("click",function click() {
 // console.log(s);
 
 // filter()筛选所有素数
-'use strict';
-function get_primes(arr) {
-    return arr.filter(function (element) {
-        if(element===1){
-            return false;
-        }else if(ele)
-    });
-}
+// 'use strict';
+// function get_primes(arr) {
+//     return arr.filter(function (element) {
+//         if(!isDual(element)){
+//             return false;
+//         }else if(element===5){
+//             return false;
+//         }
+//         for(var i=0;i<element.length;i++){
+//             if (element%i==0){
+//                 return false;
+//             }
+//         }
+//         return true;
+//     });
+// }
+// function isDual(num){
+//     var num = num.toString();
+//     var lastNum = num.substring(num.length-1,num.length);
+//     return lastNum%2 == 0 || lastNum%5 == 0 ? false : true;
+// }
+//
+// console.log(get_primes([2,3,4,5,6,7]));
 
-console.log(get_primes([2,3,4,5,6,7]));
+//使用高阶函数，一个数组中的两个数的和等于一个定值，
+// 将两个元素的索引值返回；
+// 'use strict';
+// function Sum(target){
+//     var res=[];
+//     var slef=this;
+//     this.map(function (ele,indexI) {
+//        slef.filter(function (e,indexII) {
+//            if((target-e)===ele){
+//                res=[indexII,indexI];
+//            }
+//        })
+//     });
+//     return res;
+// }
+//
+// var arr=[1,2,7,9,11,15];
+// console.log(Sum.call(arr, 9));
+
+// 闭包
+// function lazy_sum(arr) {
+//     var sum=function () {
+//         return arr.reduce(function (x,y) {
+//             return x+y;
+//         });
+//     }
+//     return sum;
+// }
+//
+// var f=lazy_sum([1,2,3,4,5,6]);
+// var f1 = lazy_sum([1, 2, 3, 4, 5]);
+// var f2 = lazy_sum([1, 2, 3, 4, 5]);
+// console.log(f());//21
+// console.log(f);//[Function sum]
+// console.log(f1===f2);
+
+// function count() {
+//     var arr = [];
+//     for (var i = 0; i <= 3; i++) {
+//         arr.push(function () {
+//             return i * i;
+//         })
+//     }
+//     return arr;
+// }
+//
+// var results = count();
+// var f1 = results[0];
+// var f2 = results[1];
+// var f3 = results[2];
+//
+// console.log(f1());
+// console.log(f2());
+// console.log(f3());
+
+// function count() {
+//     var arr = [];
+//     for(var i=1;i<=3;i++){
+//         arr.push((function(n){
+//             return function (){
+//                 return n*n;
+//             }
+//         })(i));
+//     }
+//     return arr;
+// }
+// var results = count();
+// var f1 = results[0];
+// var f2 = results[1];
+// var f3 = results[2];
+//
+// console.log(f1());
+// console.log(f2());
+// console.log(f3());
+
+
+// 匿名函数：
+// var total = 1;
+// var demo = function () {
+//     total = 10;
+// }
+// console.log(demo());
+// console.log(total);
+
+// function create_counter(initial) {
+//     var x = initial || 0;
+//     return {
+//         inc: function () {
+//             x += 1;
+//             return x;
+//         }
+//     }
+// }
+// var c1=create_counter();
+// console.log(c1.inc());
+// console.log(c1.inc());
+// console.log(c1.inc());
+//
+// var c2=create_counter(10);
+// console.log(c2.inc());
+// console.log(c2.inc());
+// console.log(c2.inc());
+
+// function foo() {
+//     var a=2;
+//     function bar() {
+//         console.log(a);
+//     }
+//     return bar;
+// }
+// var baz=foo();
+// baz();
+
+// function* fib(max) {
+//     var
+//         t,
+//         a = 0,
+//         b = 1,
+//         n = 1;
+//     while (n < max) {
+//         yield a;
+//         t = a + b;
+//         a = b;
+//         b = t;
+//         n ++;
+//     }
+//     return a;
+// }
+// fib(5);

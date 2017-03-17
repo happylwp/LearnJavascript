@@ -67,7 +67,7 @@ r;//[1,3,5,9,15]
 ```js
 var arr=['A','','B',null,undefined,'c',' '];
 var r=arr.filter(function(x){
-    return x&&x.trim();//IE9以下没有trim()方法;
+    return x && x.trim();//IE9以下没有trim()方法;
 });
 r;//['A','B','c']
 ```
@@ -83,6 +83,118 @@ r;//['A','B','c']
     s;//[5,6,8,10]
     //原理：indexOf()返回的是self元素的第一个出现的索引值，当出现第二个时索引值不相等,filter()函数将其过滤；
 ```
+
+#### indexOf()使用：由于indexOf()返回数组第一次搜索到的元素索引值，结合过滤函数filter将重复出现的元素根据比较关系返回布尔值，剔除对应元素；
+
+## 闭包：
+1.当外部函数返回内部函数时，相关参数和属性都保存在内部函数，
+
+```js
+//数组元素求和
+function lazy_sum(arr){
+    var sums=arr.reduce(function(x,y){
+            return x+y;
+        });
+    }
+    return sums;
+}
+var f=lazy_sum([1,2,3,4,5,6]);
+console.log(f);//[Function sum]
+console.log(f());//21
+```
+2.外部函数每次调用返回的内部函数都不相同（即使传入的参数相同）；但是调用结果一样 
+
+```js
+var f1=lazy_sum([1,2,3,4,5]);
+var f2=lazy_sum([1,2,3,4,5]);
+console.log(f1===f2);//false
+``` 
+
+3.返回函数调用可变变量，当外部函数返回内部函数并不立即执行，直到调用该内部函数时；
+例子：
+
+```js
+function count(){
+    var arr = [];
+    for(var i=1;i<=3;i++){
+        arr.push(function(){
+            return i*i;
+        });
+    }
+}
+
+var results=count();
+var f1=results[0];
+var f2=results[1];
+var f3=results[2];
+console.log(f1());//16
+console.log(f2());//16
+console.log(f3());//16
+//解析：当results调用count()方法，f1,f2,f3并不立即执行返回函数；直到f1(),f2(),f3()时，i已经循环结束,此时的i等于4；所以返回4；
+
+//解决返回函数不立即执行问题：将返回函数改造成一个立即执行匿名函数
+
+function count(){
+    var arr=[];
+    for(var i=1;i<=3;i++){
+        arr.push(function (n){
+            return function(){
+                return n*n;
+            }
+        })(i);//将i的值赋值给n,根据匿名函数的表达式原则，会立即执行值为i时的匿名函数求出乘积；
+    }
+}
+
+var results=count();
+var f1=results[0];
+var f2=results[1];
+var f3=results[2];
+console.log(f1());//1
+console.log(f2());//4
+console.log(f3());//9
+```
+4.闭包是能够携带状态的函数，并且他的状态对外隐藏；
+例子：
+
+```js
+function create_counter(initial){
+    var x=initial || 0;
+    return {
+        inc : function(){
+            x+=1;
+            return x;
+        }
+    }
+}
+
+var c1=create_counter();
+console.log(c1.inc());//1
+console.log(c1.inc());//2
+console.log(c1.inc());//3
+
+var c2=create_counter(10);
+console.log(c2.inc());//11
+console.log(c2.inc());//12
+console.log(c2.inc());//13
+```
+
+#### 匿名函数：没有名称的函数，但是能够传递参数，也可以复制给一个变量
+匿名函数理解：
+
+```js
+//一般函数定义
+function demo(){
+//函数主体；
+}
+
+//上面的函数实际是将函数主题赋值给demo变量；所以可以这样写：
+
+var demo=function (){
+    //函数主体
+}
+//调用demo方法时使用demo()就可以;（小括号的作用就是将demo变量指向的函数主体作为函数执行，不加小括号就会将demo变量的函数主体部分识别为字符串）
+```
+
 
 
 

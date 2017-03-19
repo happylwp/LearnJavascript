@@ -9,6 +9,13 @@ function quickSort(arr) {
         });
 
         var basicNum = newArr[0];
+        for(var i=1;i<newArr.length;i++){
+            if(basicNum>newArr[i]){
+                leftArr.push(newArr[i]);
+            }else {
+                rightArr.push(newArr[i]);
+            }
+        }
 
         // var runArr=newArr.splice(0,1);
         // runArr.map(function (x) {

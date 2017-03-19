@@ -302,3 +302,228 @@
 //     return a;
 // }
 // fib(5);
+// var d = Date.parse('2015-06-24T19:49:22.875+08:00');
+// console.log(d);
+
+// var re = /^(\d{3})-(\d{3,8})$/;
+// console.log(re.exec('010-12345')[1]);
+
+//
+// 给出年分m和一年中的第n天
+// ，
+// 算出第n天是几月几号
+// 。
+//
+// 输入包括两个整数y(1 <= y <= 3000)
+// ，
+// n(1 <= n <= 366)
+// 。
+//
+// 可能有多组测试数据
+// ，
+// 对于每组数据
+// ，
+// 按
+// yyyy - mm - dd的格式将输入中对应的日期打印出来
+// 。
+//
+//
+// 输入
+// ：
+// 2000
+// 3
+// 2000
+// 31
+// 2000
+// 40
+// 2000
+// 60
+// 2000
+// 61
+// 2001
+// 60
+// 输出
+// ：
+// 2000 - 01 - 03
+// 2000 - 01 - 31
+// 2000 - 02 - 09
+// 2000 - 02 - 29
+// 2000 - 03 - 01
+// 2001 - 03 - 01
+// function duplicates(arr) {
+//     var sum=[];
+//     arr.map(function(ele){
+//         if(arr.indexOf(ele)!==arr.lastIndexOf(ele)){
+//             sum.push(ele);
+//         }
+//     });
+//     return sum.filter(function(ele,index,self){
+//         return self.indexOf(ele)===index;
+//     });
+// }
+
+// console.log(duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3]).sort());
+
+
+// function square(arr) {
+//     var sum=[];
+//     arr.map(function(ele){
+//         sum.push(Math.pow(ele,2));
+//     });
+//     return sum;
+// }
+//
+// console.log(square([1, 2, 3, 4]));
+
+
+// function parse2Int(num) {
+//     return parseInt(num,10);
+// }
+//
+// console.log(parse2Int('12'));
+// console.log(parse2Int('12px'));
+// console.log(parse2Int('0x12'));
+
+// var str = 'hello world!';
+// var result = /^hello/.test(str);
+// console.log(result); // true
+
+// class Student {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//
+//     hello() {
+//         alert('hello,' + this.name + '!');
+//     }
+// }
+//
+// function Student(name) {
+//     this.name = name;
+// }
+// Student.prototype.hello=function () {
+//     alert('hello,'+this.name+'!');
+// };
+//
+// function Student(name,hello) {
+//     this.name=name;
+//     this.hello=function () {
+//         alert('hello,'+this.name+'!');
+//     }
+// }
+
+// 需要解决问题？？
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Cat extends Animal {
+    constructor(name) {
+        super(name);
+        this.say=say;
+    }
+    say() {
+        console.log("Hello," + this.name);
+    }
+}
+
+// function count(start, end) {
+//     var count=start;
+//     console.log(count);
+//     var timerOut=setInterval(function(){
+//         console.log(++count);
+//         if(count>=end){
+//             clearInterval(timerOut);
+//         }
+//     },100);
+//     return {
+//         cancel:function(){
+//         clearInterval(timerOut);
+//     }};
+// }
+// console.log(count(1,10));
+//
+// function argsAsArray(fn, arr) {
+//     var func=fn.apply(this,arr);
+//     return func;
+// }
+//
+// console.log(argsAsArray(
+//     function (greeting, name, punctuation) {
+//         return greeting + ', ' + name + (punctuation || '!');
+//     }, ['Hello', 'Ellie', '!']));
+
+// speak(
+//     function () {
+//         return this.greeting + ', ' + this.name + '!!!';
+//     }, {greeting: 'Hello', name: 'Rebecca'})
+
+
+// function functionFunction(str) {
+//    return  function (str1) {
+//        return str+", "+str1;
+//    }
+// }
+
+// function makeClosures(arr,fn) {
+//     return arr.map(function (ele) {
+//         return function () {
+//             return fn(ele);
+//         }
+//     });
+// }
+//
+// var arr = [1, 2, 3];
+// var square = function (x) {
+//     return x * x;
+// };
+// var funcs = makeClosures(arr, square);
+// console.log(funcs[2]);
+
+//
+// var sayIt = function(greeting, name, punctuation) {
+//     return greeting + ', ' + name + (punctuation || '!');
+// };
+// partial(sayIt, 'Hello', 'Ellie')('!!!');
+
+// function callIt(fn) {
+//     return fn.apply(this,[].slice.call(arguments,1));
+// }
+// var a = 1;
+// var b = 2;
+// var test = function (first, second) {
+//     return first === a && second === b;
+// };
+// console.log(callIt(test, a, b));
+
+// function partialUsingArguments(fn) {
+//     var args1=[].slice.call(arguments,1);
+//     return function () {
+//         return fn.apply(this, args1.concat([].slice.call(arguments)));
+//     };
+// }
+//
+// var a = 1;
+// var b = 2;
+// var c = 3;
+// var d = 4;
+// var test = function (first, second, third, forth) {
+//     return first + second + third + forth;
+// };
+// console.log(partialUsingArguments(test, a, b)(c, d));
+
+// function curryIt(fn) {
+//     var len = fn.length;
+//     var args = [];
+//     return function result(ele) {
+//         args.push(ele);
+//         return args.length === len ? fn.apply(undefined, args) : (function () {
+//                 return result;
+//             })();
+//     };
+// }
+// var fn = function (a, b, c) {
+//     return a + b + c
+// };
+// console.log(curryIt(fn)(1)(2)(3));

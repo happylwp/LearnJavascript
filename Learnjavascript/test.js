@@ -413,20 +413,20 @@
 // }
 
 // 需要解决问题？？
-class Animal {
-    constructor(name) {
-        this.name = name;
-    }
-}
-class Cat extends Animal {
-    constructor(name) {
-        super(name);
-        this.say=say;
-    }
-    say() {
-        console.log("Hello," + this.name);
-    }
-}
+// class Animal {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+// class Cat extends Animal {
+//     constructor(name) {
+//         super(name);
+//         this.say=say;
+//     }
+//     say() {
+//         console.log("Hello," + this.name);
+//     }
+// }
 
 // function count(start, end) {
 //     var count=start;
@@ -527,3 +527,4 @@ class Cat extends Animal {
 //     return a + b + c
 // };
 // console.log(curryIt(fn)(1)(2)(3));
+

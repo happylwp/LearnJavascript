@@ -244,3 +244,83 @@
 // extend(Cats,Animal);
 // var cat1=new Cats("大毛","蓝色");
 // console.log(cat1.species);
+
+
+// function commonString(first,second){
+//     var S="";
+//     var sstr= "";
+//     var L1=s1.length;
+//     var L2=s2.length;
+//     if (L1>L2){ 
+//         var s3=s1;
+//         s1=s2,s2=s3,L1=s2.length;
+//     }
+//     for ( var j=L1;j> 0 ;j--)
+//         for ( var i= 0 ;i<=L1-j;i++){
+//             sstr = s1.substr(i,j);
+//             if (s2.indexOf(sstr)>= 0 ) return sstr;
+//     }
+//   return "" ;
+// }
+
+// function findSubStr(s1, s2) {
+//     var S = sstr = "",
+//         L1 = s1.length,
+//         L2 = s2.length;
+//     if (L1 > L2) {
+//         var s3 = s1;
+//         s1 = s2, s2 = s3, L1 = s2.length;
+//     }
+//     for (var j = L1; j > 0; j--)
+//         for (var i = 0; i <= L1 - j; i++) {
+//             sstr = s1.substr(i, j);
+//             if (s2.indexOf(sstr) >= 0) return sstr;
+//         }
+//     return "";
+// }
+// console.log(findSubStr("aaa3333", "baa333cc")); //aa333
+// console.log(findSubStr("aaaX3333--", "baa333ccX3333333x")); //X3333
+
+function LCS(str1, str2) {
+    var maxLen = 0;
+    var index = 0;
+
+    var arr = new Array();
+    for (var i = 0; i <= str1.length + 1; i++) {
+        arr[i] = new Array();
+        for (var j = 0; j <= str2.length + 1; j++) {
+            arr[i][j] = 0;
+        }
+    }
+
+    for (var i = 0; i <= str1.length; i++) {
+        for (var j = 0; j <= str2.length; j++) {
+            if (i == 0 || j == 0) {
+                arr[i][j] = 0
+            } else {
+                if (str1[i] == str2[j] && str1[i - 1] == str2[j - 1]) {
+                    arr[i][j] = arr[i - 1][j - 1] + 1;
+                } else {
+                    arr[i][j] = 0;
+                }
+            }
+            if (arr[i][j] > maxLen) {
+                maxLen = arr[i][j];
+                index = i;
+            }
+        }
+    }
+
+    var str = "";
+    if (maxLen == 0) {
+        return "";
+    } else {
+        for (var k = index - maxLen; k < maxLen; k++) {
+            str += str1[k];
+        }
+        return str;
+    }
+}
+var str1 = "abcdefg";
+var str2 = "xyzabcd";
+console.log(LCS(str1, str2)); // abcd

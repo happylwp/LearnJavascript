@@ -7,9 +7,11 @@
 
         {
             "type": "node",
+            "protocol": "inspector",
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/first.js"
+
         },
         {
             "type": "node",

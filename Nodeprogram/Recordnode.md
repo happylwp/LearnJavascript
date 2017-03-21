@@ -155,41 +155,124 @@ c ). 同步读取文件：（没有回调函数，直接返回结果data）
     d ). 写文件：fs.writeFile()
         例子：
         
-        ```js
-        var fs=require('fs');
-        var data='hello loner11!';
-        fs.writeFile('output.txt',data,function(err){
-            if(err){
-                console.log(err);
-            }else{
-                console.log("ok!");
-            }
-        });  //writeFile()第一个参数为写入文件的名，第二个参数是写入内容；结果为在同级目录生成testOut.txt文件，控制台输出"ok!" ，
-        ```
-        写文件通读取文件也有同步操作：
+   ```js
+   var fs=require('fs');
+   var data='hello loner11!';
+   fs.writeFile('output.txt',data,function(err){
+       if(err){
+           console.log(err);
+       }else{
+           console.log("ok!");
+       }
+   });  //writeFile()第一个参数为写入文件的名，第二个参数是写入内容；结果为在同级目录生成testOut.txt文件，控制台输出"ok!" ，
+   ```
+   写文件通读取文件也有同步操作：
         
-        ```js
-        var fs=require('fs');
-        var data='hello loner11!';
-        fs.writeFileSync('textOut.txt',data);
-        ```
-    e ). 读取文件生成，修改等信息使用stat:
-    
+   ```js
+   var fs=require('fs');
+   var data='hello loner11!';
+   fs.writeFileSync('textOut.txt',data);
+   ```
+   e ). 读取文件生成，修改等信息使用stat:
+   
+   ```js
+   var fs=require('fs');
+   fs.stat('testOut.txt',function(err,stat){
+       if(err){
+           console.log(err);
+       }else{
+           console.log("是否是文件："+stat.isFile());
+           console.log("是否是目录："+stat.isDictionary());
+           if(stat.isFile()){
+               console.log(stat.size);
+               console.log(stat.birthtime);
+               console.log(stat.mtime);
+           }
+       }
+   });
+   
+   //结果为：  是否是文件：true
+              是否是目录：false
+              240951
+              2017-03-20T11:00:46.000Z
+              2017-03-20T11:01:30.000Z
+   ```
+2. stream(一个仅服务区可用模块):目的是支持”流“这种数据结构，流是一种抽象数据结构，也能当做对象来使用；
+        a).从文件流读取文件内容：
+        例子：
+        
     ```js
     var fs=require('fs');
-    fs.stat('testOut.txt',function(err,stat){
-        if(err){
-            console.log(err);
-        }else{
-            console.log("是否是文件："+stat.isFile());
-            console.log("是否是目录："+stat.isDictionary());
-            if(stat.isFile()){
-                 
-            }
-        }
-    });
+       var rs=fs.createReadStream('textOut.txt');
+       rs.on('data',function(chunk){
+       console.log("DATA:"+chunk);
+       });
+       rs.on('end',function(){
+           console.log("END!");
+       });
+       rs.on('error',function (error){
+           console.log(error);
+       });
+       //  hello,loner11!
+           play game;
+           DATA: hello loner11
+           END
+
     ```
+    b). 将信息写入文件：使用createWriteStream();必须带文件名，否则会自动创建；
+        例子：
         
-    
+       ```js
+       var fs=require('fs');
+       
+       var ws1=fs.createWriteStream('outTxt.txt','utf-8');
+       ws1.write("使用Stream写入文本数据...\n");
+       ws1.end();//
+       ```
+       （所有的读取文件都继承自stream.Readable(),写内容都继承stream.Writeable().）
+ 
+ 3.http(模块)：两个参数request,response;
+       1. request对象封装http的请求，调用http的响应属性和方法获取请求信息；
+       2. response对象封装http的响应，调用response方法将http响应的信息返回给浏览器；
+        
+ ```js
+    'use strict';
+
+            // 导入http模块:
+            var http = require('http');
+            
+            // 创建http server，并传入回调函数:
+            var server = http.createServer(function (request, response) {
+                // 回调函数接收request和response对象,
+                // 获得HTTP请求的method和url:
+                console.log(request.method + ': ' + request.url);
+                // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+                response.writeHead(200, {'Content-Type': 'text/html'});
+                // 将HTTP响应的HTML内容写入response:
+                response.end('<h1>Hello world!</h1>');
+            });
+            
+            // 让服务器监听8080端口:
+            server.listen(8080);
+            
+            console.log('Server is running at http://127.0.0.1:8080/');
+```
+
+4.文件服务器（url模块）：使用parse()将一个字符串解析为一个url对象；
+例子：
+
+```js
+'use strict';
+
+var url = require('url');
+
+console.log(url.parse('http://user:pass@host.com:8080/path/to/file?query=string#hash'));
+```
+本地文件解析使用path模块：
+
+```js
+
+```
+
      
 

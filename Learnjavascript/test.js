@@ -528,3 +528,109 @@
 // };
 // console.log(curryIt(fn)(1)(2)(3));
 
+// function Shape() {
+//     this.x = 0;
+//     this.y = 0;
+// }
+// Shape.prototype.move = function(x, y) {
+//     this.x += x;
+//     this.y += y;
+//     console.log("Shape moved.");
+// };
+
+// function Rectangle() {
+//     Shape.call(this);
+// }
+// Rectangle.prototype = Object.create(Shape.prototype);
+// var rect = new Rectangle();
+// rect instanceof Rectangle
+// rect instanceof Shape
+// rect.move(1, 1);
+
+
+//Setup
+var contacts = [{
+        "firstName": "Akira",
+        "lastName": "Laine",
+        "number": "0543236543",
+        "likes": ["Pizza", "Coding", "Brownie Points"]
+    },
+    {
+        "firstName": "Harry",
+        "lastName": "Potter",
+        "number": "0994372684",
+        "likes": ["Hogwarts", "Magic", "Hagrid"]
+    },
+    {
+        "firstName": "Sherlock",
+        "lastName": "Holmes",
+        "number": "0487345643",
+        "likes": ["Intriguing Cases", "Violin"]
+    },
+    {
+        "firstName": "Kristian",
+        "lastName": "Vos",
+        "number": "unknown",
+        "likes": ["Javascript", "Gaming", "Foxes"]
+    }
+];
+
+
+function lookUpProfile(firstName, prop) {
+    // contacts.map(function(ele) {
+    //     if (ele.firstName === firstName) {
+    //         var keyArrays = Object.keys(ele);
+    //         var newkeys = keyArrays.filter(function(elements) {
+    //             return elements === prop;
+    //         });
+    //         if (newkeys.length === 0) {
+    //             return "No such property";
+    //         } else {
+    //             return ele[prop];
+    //         }
+    //     } 
+    //     else {
+    //         return "No such contact";
+    //     }
+    // });
+    var returnName = contacts.filter(function(ele) {
+        return ele.firstName === firstName;
+    });
+    if (returnName === 0) {
+        return "No such contact";
+    } else {
+        var returnsProp = Object.keys(returnName[0]);
+        var newProp = returnsProp.filter(function(elements) {
+            return elements === prop;
+        });
+        if (newProp === 0) {
+            return "No such property";
+        } else {
+            return returnName[0][prop];
+        }
+    }
+
+
+
+    // for (var i = 0; i < contacts.length; i++) {
+    //     console.log(contacts[i].firstName);
+    //     if (contacts[i].firstName === firstName) {
+    //         var keyArrays = Object.keys(contacts[i]);
+    //         var newkeys = keyArrays.filter(function(ele) {
+    //             return ele === prop;
+    //         });
+    //         if (newkeys.length === 0) {
+    //             return "No such property";
+    //         } else {
+    //             return contacts[i][prop];
+    //         }
+
+    //     } else {
+    //         return "No such contact";
+    //     }
+    // }
+    // Only change code above this line
+}
+
+// Change these values to test your function
+console.log(lookUpProfile("Kristian", "lastName"));

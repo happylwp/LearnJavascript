@@ -549,88 +549,188 @@
 
 
 //Setup
-var contacts = [{
-        "firstName": "Akira",
-        "lastName": "Laine",
-        "number": "0543236543",
-        "likes": ["Pizza", "Coding", "Brownie Points"]
-    },
-    {
-        "firstName": "Harry",
-        "lastName": "Potter",
-        "number": "0994372684",
-        "likes": ["Hogwarts", "Magic", "Hagrid"]
-    },
-    {
-        "firstName": "Sherlock",
-        "lastName": "Holmes",
-        "number": "0487345643",
-        "likes": ["Intriguing Cases", "Violin"]
-    },
-    {
-        "firstName": "Kristian",
-        "lastName": "Vos",
-        "number": "unknown",
-        "likes": ["Javascript", "Gaming", "Foxes"]
-    }
-];
+// var contacts = [{
+//         "firstName": "Akira",
+//         "lastName": "Laine",
+//         "number": "0543236543",
+//         "likes": ["Pizza", "Coding", "Brownie Points"]
+//     },
+//     {
+//         "firstName": "Harry",
+//         "lastName": "Potter",
+//         "number": "0994372684",
+//         "likes": ["Hogwarts", "Magic", "Hagrid"]
+//     },
+//     {
+//         "firstName": "Sherlock",
+//         "lastName": "Holmes",
+//         "number": "0487345643",
+//         "likes": ["Intriguing Cases", "Violin"]
+//     },
+//     {
+//         "firstName": "Kristian",
+//         "lastName": "Vos",
+//         "number": "unknown",
+//         "likes": ["Javascript", "Gaming", "Foxes"]
+//     }
+// ];
 
 
-function lookUpProfile(firstName, prop) {
-    // contacts.map(function(ele) {
-    //     if (ele.firstName === firstName) {
-    //         var keyArrays = Object.keys(ele);
-    //         var newkeys = keyArrays.filter(function(elements) {
-    //             return elements === prop;
-    //         });
-    //         if (newkeys.length === 0) {
-    //             return "No such property";
-    //         } else {
-    //             return ele[prop];
-    //         }
-    //     } 
-    //     else {
-    //         return "No such contact";
-    //     }
-    // });
-    var returnName = contacts.filter(function(ele) {
-        return ele.firstName === firstName;
-    });
-    if (returnName === 0) {
-        return "No such contact";
-    } else {
-        var returnsProp = Object.keys(returnName[0]);
-        var newProp = returnsProp.filter(function(elements) {
-            return elements === prop;
+// function lookUpProfile(firstName, prop) {
+
+//     for (var x = 0; x < contacts.length; x++) {
+//         if (contacts[x].firstName === firstName) {
+//             if (contacts[x].hasOwnProperty(prop)) {
+//                 return contacts[x][prop];
+//             } else {
+//                 return "No such property";
+//             }
+//         }
+//     }
+//     return "No such contact";
+// }
+
+// // Change these values to test your function
+// console.log(lookUpProfile("Kristian", "lastName"));
+
+// 回文字符串
+// function palindrome(str) {
+//     var reg = /^\w_/g;
+//     console.log(str.replace(reg, ' '));
+
+
+//     // Good luck!
+//     return str.replace(reg, '').toLowerCase() === str.replace(reg, '').toLowerCase().split('').reverse().join('');
+// }
+
+// // return str.replace(/[\W_]/g, '').toLowerCase() === str.replace(/[\W_]/g, '').toLowerCase().split('').reverse().join('');
+// console.log(palindrome("eye"));
+
+// 字符串首字母大写
+// function titleCase(str) {
+//     return str.toLowerCase().replace(/( |^)[a-z]/g, function(firstStr) {
+//         return firstStr.toUpperCase();
+//     });
+// }
+
+// console.log(titleCase("I'm a little tea pot"));
+
+//判断一个数组中的第一个元素的字符串包含第二个元素的所有的字母则返回true
+// function mutation(arr) {
+//     var firstStr = arr[0].toLowerCase();
+//     var secondStr = arr[1].toLowerCase();
+//     for (var i = 0; i < secondStr.length; i++) {
+//         if (firstStr.indexOf(secondStr[i]) < 0) {//在第一个字符串没有匹配到一个字符就返回false;
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// console.log(mutation(["hello", "hey"]));
+
+
+// 清除一个数组中与提供参数相同的元素
+// function destroyer(arr) {
+//     var args = Array.prototype.slice.call(arguments);
+//     args.slice(0, 1); //将第一个参数拷贝出来
+//     // console.log(args.slice(0, 1));
+//     return arr.filter(function(ele, index) {
+//         return args.indexOf(ele) === -1;
+//     });
+
+//     // var args = Array.prototype.slice.call(arguments);
+//     // args.splice(0, 1);
+//     // return arr.filter(function(element) {
+//     //     return args.indexOf(element) === -1;
+//     // });
+
+// }
+
+// console.log(destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3));
+
+// function rot13(str) {
+//     return str.split('')
+//         .map.call(str, function(char) { //将分开的字符串使用call赋予str数组的方法和属性；
+//             var x = char.charCodeAt(0); //使用map高阶函数将str的每一个元素转码
+//             if (x < 65 || x > 90) {
+//                 return String.fromCharCode(x);
+//             } else if (x < 78) {
+//                 return String.fromCharCode(x + 13);
+//             }
+//             return String.fromCharCode(x - 13);
+//         }).join('');
+// }
+
+
+
+// console.log(rot13("SERR PBQR PNZC"));
+
+// function diffArray(arr1, arr2) {
+//     var newArr = [];
+//     for (var i = 0; i < arr1.length; i++) {
+//         if (arr2.indexOf(arr1[i]) === -1) {
+//             newArr.push(arr1[i]);
+//         }
+//     }
+//     for (var j = 0; j < arr2.length; j++) {
+//         if (arr1.indexOf(arr2[j]) === -1) {
+//             newArr.push(arr2[j]);
+//         }
+//     }
+
+//     return newArr;
+//     // for (var i = 0; i < arr1.length; i++) {
+//     //     if (arr2.indexOf(arr1[i]) >= 0) {
+//     //         arr2.slice(arr2.indexOf(arr1[i]), 1);
+//     //         arr1.slice(i, 1);
+//     //     }
+//     // }
+//     // console.log(arr1, arr2);
+//     // return arr1.concat(arr2);
+//     // var commonArr = arr1.filter(function(ele) {
+//     //     for (var i = 0; i < arr2.length; i++) {
+//     //         return ele === arr2[i];
+//     //     }
+//     // }); //先找出公共元素
+//     //将arr1,arr2中的共有元素删除；然后连接
+//     // return newArr;
+// }
+
+// console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+//查找一个由对象组成的数组中是否有一个对象中的含有与提供的对象相同的属性与对应值
+// function whatIsInAName(collection, source) {
+//     var srcKeys = Object.keys(source);
+//     console.log(srcKeys);
+//     return collection.filter(function(ele) {
+//         for (var i = 0; i < srcKeys.length; i++) {
+//             if (!ele.hasOwnProperty(srcKeys[i]) || ele[srcKeys[i]] !== source[srcKeys[i]]) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     });
+// }
+// console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
+
+//替换一个长字符串的一个单词，但是格式必须与替换前一致
+function myReplace(str, before, after) {
+    var regBig = /( |^)[a-z]/g;
+    var regSmall = /( |^)[A-Z]/g;
+    if (before.match(/( |^)[a-z]/g) === null) {
+        after.replace(regBig, function(ele) {
+            return ele.toUpperCase();
         });
-        if (newProp === 0) {
-            return "No such property";
-        } else {
-            return returnName[0][prop];
-        }
+    } else {
+        after.replace(regSmall, function(elements) {
+            return elements.toLowerCase();
+        });
     }
+    console.log(after);
+    str.replace(/before/gi, after);
 
-
-
-    // for (var i = 0; i < contacts.length; i++) {
-    //     console.log(contacts[i].firstName);
-    //     if (contacts[i].firstName === firstName) {
-    //         var keyArrays = Object.keys(contacts[i]);
-    //         var newkeys = keyArrays.filter(function(ele) {
-    //             return ele === prop;
-    //         });
-    //         if (newkeys.length === 0) {
-    //             return "No such property";
-    //         } else {
-    //             return contacts[i][prop];
-    //         }
-
-    //     } else {
-    //         return "No such contact";
-    //     }
-    // }
-    // Only change code above this line
+    return str;
 }
 
-// Change these values to test your function
-console.log(lookUpProfile("Kristian", "lastName"));
+console.log(myReplace("A quick brown fox Jumped over the lazy dog", "Jumped", "leaped"));

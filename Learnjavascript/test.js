@@ -715,22 +715,89 @@
 // console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
 
 //替换一个长字符串的一个单词，但是格式必须与替换前一致
-function myReplace(str, before, after) {
-    var regBig = /( |^)[a-z]/g;
-    var regSmall = /( |^)[A-Z]/g;
-    if (before.match(/( |^)[a-z]/g) === null) {
-        after.replace(regBig, function(ele) {
-            return ele.toUpperCase();
-        });
-    } else {
-        after.replace(regSmall, function(elements) {
-            return elements.toLowerCase();
-        });
-    }
-    console.log(after);
-    str.replace(/before/gi, after);
+// function myReplace(str, before, after) {
+//     var regBig = /( |^)[a-z]/g;
+//     var regSmall = /( |^)[A-Z]/g;
+//     var newStr = "";
+//     if (before.match(/( |^)[a-z]/g) === null) {
+//         newStr = after.replace(regBig, function(ele) {
+//             return ele.toUpperCase();
+//         });
+//     } else {
+//         newStr = after.replace(regSmall, function(elements) {
+//             return elements.toLowerCase();
+//         });
+//     }
+//     return str.replace(before, newStr);
+// }
 
-    return str;
+// console.log(myReplace("A quick brown fox Jumped over the lazy dog", "Jumped", "leaped"));
+
+// function translatePigLatin(str) {
+//     var regexp = /[aeiou]/;
+//     var firstCons = str.search(regexp);
+//     if (firstCons === 0) {
+//         return str + "way";
+//     } else {
+//         var deleStr = str.substr(0, firstCons);
+//         var newArr = str.split("");
+//         for (var i = 0; i < firstCons; i++) {
+//             newArr.shift();
+//         }
+//         return newArr.join("") + deleStr + "ay";
+//     }
+// }
+
+
+// console.log(translatePigLatin("paragraphs"));
+
+
+//DNA配对：A-T C-G
+// function pairElement(str) {
+//     var firstArr = str.split("");
+//     var sumArr = [];
+//     var tempArr = [];
+//     var sum = firstArr.map(function(ele, index) { //找出原基因链的匹配碱基对存到临时数组
+//         if (ele === "A") {
+//             tempArr[index] = "T";
+//         } else if (ele === "T") {
+//             tempArr[index] = "A";
+//         } else if (ele === "C") {
+//             tempArr[index] = "G";
+//         } else {
+//             tempArr[index] = "C";
+//         }
+//         return tempArr;
+//     });
+//     return firstArr.map((item, idx) => [item, tempArr[idx]]); //合并匹配对应数组
+
+
+// }
+
+// console.log(pairElement("GCG"));
+
+
+function fearNotLetter(str) {
+    var map = Array.prototype.map;
+    var sum = map.call(str, function(x) {
+        return x.charCodeAt(0);
+    });
+    for (var i = 1; i < sum.length; i++) {
+        if (sum[i] - sum[i - 1] !== 1) {
+            return String.fromCharCode(sum[i - 1] + 1);
+        }
+    }
+    return undefined;
+    var map = Array.prototype.map;
+    var sum = map.call(str, function(x) {
+        return x.charCodeAt(0);
+    });
+    for (var i = 1; i < sum.length; i++) {
+        if (sum[i] - sum[i - 1] !== 1) {
+            return String.fromCharCode(sum[i - 1] + 1);
+        }
+    }
+    return undefined;
 }
 
-console.log(myReplace("A quick brown fox Jumped over the lazy dog", "Jumped", "leaped"));
+console.log(fearNotLetter("abce"));

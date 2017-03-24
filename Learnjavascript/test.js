@@ -777,27 +777,327 @@
 // console.log(pairElement("GCG"));
 
 
-function fearNotLetter(str) {
-    var map = Array.prototype.map;
-    var sum = map.call(str, function(x) {
-        return x.charCodeAt(0);
-    });
-    for (var i = 1; i < sum.length; i++) {
-        if (sum[i] - sum[i - 1] !== 1) {
-            return String.fromCharCode(sum[i - 1] + 1);
+// function fearNotLetter(str) {
+//     var map = Array.prototype.map;
+//     var sum = map.call(str, function(x) {
+//         return x.charCodeAt(0);
+//     });
+//     for (var i = 1; i < sum.length; i++) {
+//         if (sum[i] - sum[i - 1] !== 1) {
+//             return String.fromCharCode(sum[i - 1] + 1);
+//         }
+//     }
+//     return undefined;
+//     var map = Array.prototype.map;
+//     var sum = map.call(str, function(x) {
+//         return x.charCodeAt(0);
+//     });
+//     for (var i = 1; i < sum.length; i++) {
+//         if (sum[i] - sum[i - 1] !== 1) {
+//             return String.fromCharCode(sum[i - 1] + 1);
+//         }
+//     }
+//     return undefined;
+// }
+
+// console.log(fearNotLetter("abce"));
+
+
+//剔除多个数组作为参数的的共同值，并进行合并
+// function uniteUnique(arr) {
+//     var finalArray = [];
+
+//     for (var i = 0; i < arguments.length; i++) {
+//         var arrayArguments = arguments[i];
+
+//         for (var j = 0; j < arrayArguments.length; j++) {
+//             var indexValue = arrayArguments[j];
+
+//             if (finalArray.indexOf(indexValue) < 0) {
+//                 finalArray.push(indexValue);
+//             }
+//             }
+//         }
+
+//         return finalArray;
+
+//         // var args = [].slice.call(arguments);
+//         // var newArr = [];
+//         // var count = 1;
+//         // for (var i = 0; i < args.length; i++) {
+//         //     arr.filter(function() {
+
+//         //     });
+//         // }
+
+//         return arr;
+//     }
+
+//     console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+// function convertHTML(str) {
+//     var temp = str.split('');
+//     for (var i = 0; i < temp.length; i++) {
+//         switch (temp[i]) {
+//             case '<':
+//                 temp[i] = '&lt;';
+//                 break;
+//             case '&':
+//                 temp[i] = '&amp;';
+//                 break;
+//             case '>':
+//                 temp[i] = '&gt;';
+//                 break;
+//             case '"':
+//                 temp[i] = '&quot;';
+//                 break;
+//             case "'":
+//                 temp[i] = "&apos;";
+//                 break;
+//         }
+//     }
+//     temp = temp.join('');
+//     return temp;
+// }
+
+// console.log(convertHTML("Dolce & Gabbana"));
+
+
+// 将一个由多个单词组成的字符串间的空格换成-连接；
+// function spinalCase(str) {
+//     var regex = /\s+|_+/g;
+//     str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+//       return str.replace(regex, '-').toLowerCase();
+//     // var regs = /[a-z]+/gi;
+//     // var newArr = str.toLowerCase().split(regs);
+//     // return newArr;
+// }
+
+// console.log(spinalCase('This Is Spinal Tap'));
+
+// 将由斐波那契数列的奇数累加
+// function sumFibs(num) {
+//     var prevNumber = 0;
+//     var currNumber = 1;
+//     var result = 0;
+//     while (currNumber <= num) {
+//         if (currNumber % 2 !== 0) {
+//             result += currNumber;
+//         }
+//         currNumber += prevNumber;
+//         prevNumber = currNumber - prevNumber;
+//     }
+//     return result;
+//     // var newArr = [1];
+//     // var firstNum = 1;
+//     // var secondNum = 1;
+//     // if (num < 2) {
+//     //     return firstNum;
+//     // } else if (num < 3) {
+//     //     return firstNum + secondNum;
+//     // } else {
+//     //     for (var i = 0; i < num; i++) {
+//     //         return newArr[i] = sumFibs[num] + sumFibs[num - 1];
+//     //     }
+//     // }
+//     // return newArr;
+// }
+
+// console.log(sumFibs(4));
+
+
+//将一个数的所有约数为质数的数求和
+// function sumPrimes(num) {
+//     function isPrime(number) { //判断一个数是否为素数
+//         for (i = 2; i <= number; i++) {
+//             if (number % i === 0 && number != i) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+//     if (num === 1) {
+//         return 0;
+//     }
+//     if (isPrime(num) === false) {
+//         return sumPrimes(num - 1);
+//     }
+//     if (isPrime(num) === true) {
+//         return num + sumPrimes(num - 1);
+//     }
+// }
+
+// console.log(sumPrimes(10));
+
+//求一个范围内的所有数的最小公倍数
+// function smallestCommons(arr) {
+//     function commonNum(first, second) { //两个数的最小公倍数；
+//         var minNum = Math.min(first, second);
+//         var maxNum = Math.max(first, second);
+//         if (minNum === 1) {
+//             return maxNum;
+//         }
+//         for (var i = 2; i <= maxNum; i++) {
+//             if ((minNum * i) % maxNum === 0) {
+//                 return minNum * i;
+//             }
+//         }
+//     }
+//     var preNumber;
+//     var nextNumber;
+//     if (arr[0] > arr[1]) {
+//         preNumber = arr[1];
+//         for (var k = 1; k < (Math.abs(arr[0] - arr[1]) + 1); k++) {
+//             nextNumber = arr[1] + k;
+//             preNumber = commonNum(preNumber, nextNumber);
+//         }
+//         return preNumber;
+//     } else {
+//         preNumber = arr[0];
+//         for (var j = 1; j < (Math.abs(arr[0] - arr[1]) + 1); j++) {
+//             nextNumber = arr[0] + j;
+//             preNumber = commonNum(preNumber, nextNumber);
+//         }
+//         return preNumber;
+//     }
+// }
+
+
+// console.log(smallestCommons([1, 5]));
+
+// function commonNum(first, second) { //两个数的最小公倍数；
+//     var minNum = Math.min(first, second);
+//     var maxNum = Math.max(first, second);
+//     if (minNum === 1) {
+//         return maxNum;
+//     }
+//     for (var i = 2; i <= maxNum; i++) {
+//         if ((minNum * i) % maxNum === 0) {
+//             return minNum * i;
+//         }
+//     }
+// }
+
+// console.log(commonNum(2, 4));
+
+
+// function steamrollArray(arr) {
+//     return arr.reduce(function(ele1, ele2) {
+//             return ele1.concat(Array.isArray(ele2) ? steamrollArray(ele2) : ele2);
+//         }, []);
+//         // var newArr = [];
+//         // var Arr1 = arr.map(function(ele) {
+//         //     if (Array.isArray(ele)) {
+//         //         return newArr.push(ele);
+//         //     }
+//         // });
+//         // return Arr1;
+//         // var flattenedArray = [];
+//         // var flatten = function(arg) {
+//         //     if (!Array.isArray(arg)) {
+//         //         flattenedArray.push(arg);
+//         //     } else {
+//         //         for (var a in arg) {
+//         //             flatten(arg[a]);
+//         //         }
+//         //     }
+//         // };
+//         // arr.forEach(flatten);
+//         // return flattenedArray;
+// }
+
+// console.log(steamrollArray([1, [2],
+//     [3, [
+//         [4]
+//     ]]
+// ]));
+
+// function sym(args) {
+//     var args = Array.prototype.slice.call(arguments);
+
+//     function getDiff(arr1, arr2) {
+//         function filterFunction(arr1, arr2) {
+//             return arr1.filter(function(item) {
+//                 return arr2.indexOf(item) === -1;
+//             });
+//         }
+//         return filterFunction(arr1, arr2).concat(filterFunction(arr2, arr1));
+//     };
+
+//     var symarray = args.reduce(getDiff, []);
+//     var unique = symarray.filter(function(elem, index, self) {
+//         return index === self.indexOf(elem);
+//     });
+//     return unique;
+// }
+
+// console.log(sym([1, 2, 3], [5, 2, 1, 4]));
+
+// var Person = function(firstAndLast) {
+//   var fullName = firstAndLast;
+
+//   this.getFirstName = function() {
+//     return fullName.split(" ")[0];
+//   };
+
+//   this.getLastName = function() {
+//     return fullName.split(" ")[1];
+//   };
+
+//   this.getFullName = function() {
+//     return fullName;
+//   };
+
+//   this.setFirstName = function(name) {
+//     fullName = name + " " + fullName.split(" ")[1];
+//   };
+
+//   this.setLastName = function(name) {
+//     fullName = fullName.split(" ")[0] + " " + name;
+//   };
+
+//   this.setFullName = function(name) {
+//     fullName = name;
+//   };
+// };
+
+// var bob = new Person('Bob Ross');
+// bob.getFullName();
+
+// function orbitalPeriod(arr) {
+//     var GM = 398600.4418;
+//     var earthRadius = 6367.4447;
+//     arr.map(function(ele, index) {
+//         ele.orbitalPeriod = Math.round(2 * Math.PI * Math.pow(Math.pow(earthRadius + ele.avgAlt, 3) / (GM), 0.5));
+//         delete ele.avgAlt;
+//         // console.log(ele);
+//         // return ele.orbitalPeriod;
+//     });
+//     return arr;
+// }
+
+// console.log(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]));
+
+function pairwise(arr, arg) {
+    var newArr = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] == arg) {
+                if (newArr.indexOf(j) === -1 && newArr.indexOf(i) === -1) {
+                    newArr.push(i);
+                    newArr.push(j);
+                }
+            }
         }
     }
-    return undefined;
-    var map = Array.prototype.map;
-    var sum = map.call(str, function(x) {
-        return x.charCodeAt(0);
+    console.log(newArr);
+    var newArr1 = newArr.filter(function(ele, index, self) {
+        return self.indexOf(ele) === index;
     });
-    for (var i = 1; i < sum.length; i++) {
-        if (sum[i] - sum[i - 1] !== 1) {
-            return String.fromCharCode(sum[i - 1] + 1);
-        }
-    }
-    return undefined;
+    return newArr1.reduce(function(pre, next) {
+        return pre + next;
+    });
 }
 
-console.log(fearNotLetter("abce"));
+console.log(pairwise([0, 0, 0, 0, 1, 1], 1));

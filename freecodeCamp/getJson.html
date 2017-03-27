@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/getJson.css">
+    <title>get json</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-offset-3 col-lg-6">
+
+                <!--搜索-->
+                <div class="search-wrapper">
+                    <div class="input-holder">
+                        <input type="text" class="search-input" placeholder="Type to search" />
+                        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+                    </div>
+                    <span class="close" onclick="searchToggle(this, event);"></span>
+                </div>
+                <div class="tab" role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">All</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Online</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Offline</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content tabs">
+                        <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Section2">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Section3">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <img src="search.png" alt="avatur">
+                                    <span class="username">maroon</span>
+                                    <span class="status-line">online</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="scripts/search.js"></script>
+</body>
+
+</html>

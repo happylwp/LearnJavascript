@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--  Meta  -->
+    <meta charset="UTF-8" />
+    <title>My New Pen!</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!--  Styles  -->
+    <link rel="stylesheet" href="styles/test.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+
+            <div class="col-12 col-md-auto">
+                <h4 class="title-calculator">JavaScript Calculator</h4>
+                <div class="calculator">
+
+                    <div class="calculator-display text-right">
+                        <div id="entry">
+                            <p id="answer"></p>
+                        </div>
+                        <div id="history">
+                            <p id="display"></p>
+                        </div>
+                    </div>
+
+                    <div class="calculator-func">
+                        <div class="buttonGroup">
+
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="ac-btn">
+                                        <span class="a-btn-text" value="ac" onclick="changeText(this)">AC</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn">
+                                        <span class="a-btn-text" value="clear" onclick="changeText(this)">CE</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="/" onclick="changeText(this)">&divide;</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="*" onclick="changeText(this)">X</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="7" onclick="changeText(this)">7</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="8" onclick="changeText(this)">8</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="9" onclick="changeText(this)">9</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="-" onclick="changeText(this)">-</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="4" onclick="changeText(this)">4</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="5" onclick="changeText(this)">5</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="6" onclick="changeText(this)">6</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="ac-btn other-btn-background">
+                                        <span class="a-btn-text" value="+" onclick="changeText(this)">+</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <a href="#" class="ac-btn other-btn-background">
+                                                <span class="a-btn-text" value="1" onclick="changeText(this)">1</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" class="ac-btn other-btn-background">
+                                                <span class="a-btn-text" value="2" onclick="changeText(this)">2</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" class="ac-btn other-btn-background">
+                                                <span class="a-btn-text" value="3" onclick="changeText(this)">3</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <a href="#" class="ac-btn other-btn-background" id="zero-btn">
+                                                <span class="a-btn-text" value="0" onclick="changeText(this)">0</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" class="ac-btn other-btn-background">
+                                                <span class="a-btn-text" value="." onclick="changeText(this)">.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-3">
+                                    <a href="#" class="ac-btn other-btn-background" id="equalButton">
+                                        <span class="a-btn-text" value="=" onclick="changeText(this)">=</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--
+
+    Wow! What do you want to build?
+
+    You have so many possibilities right now... Looking for something to kick off?
+    How about a simple folio page to show off everything you're going to make!
+   
+  -->
+
+    <!-- Scripts -->
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

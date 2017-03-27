@@ -1,0 +1,106 @@
+/**
+ * index.scss
+ * - Add any styles you want here!
+ */
+
+body {
+    background: #818181;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.container {
+    height: 430px;
+    width: 300px;
+    border: 2px solid #908b85;
+    background-color: #dfd8d0;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68), inset -1px -6px 12px 0.1px #89847e;
+    .title-calculator {
+        margin-top: 0.5em;
+    }
+    .calculator {
+        .calculator-display {
+            width: 85%;
+            height: 65px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #b4b39d;
+            border-radius: 6px;
+            background-color: #c3c2ab;
+            #entry {
+                margin-right: 14px;
+                font-size: 2em;
+            }
+            #history {
+                position: relative;
+                height: 10px;
+                bottom: 27px;
+                margin-right: 14px;
+                color: #8b8b7b;
+                font-size: 1em;
+                #display {
+                    color: black;
+                    line-height: 2.5em;
+                }
+            }
+        }
+        .calculator-func {
+            .buttonGroup {
+                .ac-btn {
+                    width: 44px;
+                    text-align: center;
+                    line-height: 40px;
+                    text-decoration: none;
+                    padding: 2px;
+                    color: floralwhite;
+                    background-color: #a72d45;
+                    height: 40px;
+                    position: relative;
+                    box-shadow: 0px 1px 1px #671c2a, 1px 1px 3px #671c2a;
+                    border-radius: 8px;
+                    float: left;
+                    clear: both;
+                    margin: 10px 0px;
+                    overflow: hidden;
+                    transition: box-shadow 0.1s ease-in-out;
+                    .a-btn-text {
+                        display: block;
+                        font-size: 30px;
+                        line-height: 40px;
+                        text-shadow: 0px -1px 1px #80ab5d;
+                    }
+                    &:hover {
+                        text-decoration: none;
+                    }
+                    &:active {
+                        text-decoration: none;
+                        position: relative;
+                        top: 1px;
+                        background: #a72d45;
+                        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+                        border-color: #671c2a;
+                    }
+                    &:link {
+                        text-decoration: none;
+                    }
+                }
+                .other-btn-background {
+                    background-color: #3a3a3a;
+                    box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #515151;
+                    &:active {
+                        background: #3a3a3a;
+                    }
+                }
+                #zero-btn {
+                    width: 117px;
+                }
+                #equalButton {
+                    height: 90px;
+                }
+            }
+        }
+    }
+}

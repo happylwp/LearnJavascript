@@ -1,0 +1,41 @@
+body {
+    background-color: #9b9090;
+    font-family: 'Roboto';
+}
+
+.container {
+    margin-top: 30px;
+    /*background: white;*/
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.contents {
+    width: 700px;
+    height: 400px;
+}
+
+#countryPosition {
+    list-style: none;
+    font-size: 40px;
+}
+
+#cityPosition {
+    list-style: none;
+    font-size: 30px;
+}
+
+#time {
+    font-size: 24px;
+    margin-top: 40px;
+}
+
+#forecast {
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+#temperature {
+    font-size: 20px;
+    margin-top: 20px;
+}

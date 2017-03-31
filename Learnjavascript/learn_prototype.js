@@ -1,26 +1,3 @@
-// var $div = $('div');
-// $div.attr('myname', '王福朋');
-
-// function Fn() {}
-// Fn.prototype.name = "loner11";
-// Fn.prototype.getYear = function() {
-//     return 1988;
-// };
-
-// var fn = new Fn();
-// console.log(fn.name);
-// console.log(fn.getYear());
-
-// var person = {};
-// Object.defineProperty(person, "name", {
-//     writable: false,
-//     value: "Nicholas"
-// });
-// console.log(person.name);
-// person.name = "Greg";
-// console.log(person.name);
-
-// var person = {};
 // Object.defineProperty(person, "name", {
 //     configurable: false,
 //     value: "Nicholas"
@@ -155,3 +132,131 @@
 // person2.sayName();
 // console.log(person1.sayName === person2.sayName);
 // console.log(Person.prototype)
+
+function Foo() {
+    getName = function() {
+        console.log(1);
+    }; //私有方法
+    return this;
+}
+Foo.getName = function() {
+    console.log(2); //静态方法
+}
+Foo.prototype.getName = function() {
+        console.log(3); //共有方法
+    }
+    // getName();
+var getName = function() { console.log(4); } //按值传递,定义函数
+
+function getName() {
+    console.log(5);
+}
+
+// Foo.getName();
+// getName();
+// Foo().getName();
+// getName();
+// new Foo.getName();
+// new Foo().getName();
+// new new Foo().getName();
+
+
+// function User(name) {
+//     var name = name; //私有属性
+//     this.name = name; //共有属性
+//     function getName() { //私有方法
+//         return name;
+//     }
+// }
+// User.prototype.getName = function() {
+//     return this.name;
+// };
+// User.prototype.getName = function() {
+//     return this.name;
+// };
+// User.name = 'Wscats';
+// User.getName = function() {
+//     return this.name;
+// };
+// var Wscat = new User("Wscats");
+
+// var name = "Wscats";
+// window.name = "Wscats";
+
+// function getName() {
+//     console.log(name);
+//     name = "Oaoafly";
+//     var privateName = "Stacsw";
+//     return function() {
+//         console.log(this);
+//         return privateName;
+//     }
+// }
+// var getPrivate = getName("Hello");
+// console.log(name);
+// console.log(getPrivate());
+
+// function add() {
+//     var args = Array.prototype.slice.call(arguments);
+//     return function() {
+//         var arg2 = Array.prototype.slice.call(arguments);
+//         return args.concat(arg2).reduce(function(a, b) {
+//             return a + b;
+//         });
+//     };
+
+
+// }
+
+function add() {
+    var args = Array.prototype.slice.call(arguments);
+
+    var fn = function() {
+        var arg_fn = Array.prototype.slice.call(arguments);
+        return add.apply(null, args.concat(arg_fn));
+    }
+
+    fn.valueOf = function() {
+        return args.reduce(function(a, b) {
+            return a + b;
+        })
+    }
+
+    return fn;
+}
+console.log(add(1)); // 1
+console.log(add(1, 2)(3)); //6
+console.log(add(1)(2)(3)(4)(5)); // 15
+
+// function perAlone(str) {
+//     var regex = /(.)\1+/;
+//     var arr = str.split('');
+//     var permutations = [];
+//     var tmp;
+//     if (str.match(regex) !== null && str.match(regex)[0] === str)
+//         return 0;
+
+//     function swap(index1, index2) {
+//         tmp = arr[index1];
+//         arr[index1] = arr[index2];
+//         arr[index2] = tmp;
+//     }
+
+//     function generate(int) {
+//         if (int === 1) {
+//             permutations.push(arr.join(''));
+//         } else {
+//             for (var i = 0; i != int; ++i) {
+//                 generate(int - 1);
+//                 swap(int % 2 ? 0 : i, int - 1);
+//             }
+//         }
+//     }
+//     generate(arr.length);
+//     var filters = permutations.filter(function(string) {
+//         return !string.match(regex);
+//     });
+//     return filters.length;
+// }
+
+// console.log(perAlone('aab'));

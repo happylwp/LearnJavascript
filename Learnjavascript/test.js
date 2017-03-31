@@ -1103,37 +1103,43 @@
 // console.log(pairwise([0, 0, 0, 0, 1, 1], 1));
 
 //找出一个数组两个元素的绝对值为一定值k,输出有多少对
-function pair(arr, k) {
-    if (arr.length <= 1) {
-        return 0;
-    } else if (k === 0) { //相同的值大于等于两个
-        var arr1 = [];
-        for (var k = 0; k < arr.length; k++) {
-            if (arr.indexOf(arr[k]) !== -1 && arr.lastIndexOf(arr[k]) !== -1) {
-                if (arr.indexOf(arr[k]) !== arr.lastIndexOf(arr[k])) {
-                    arr1.push(arr[k]);
-                }
-            }
-        }
-        return arr1.length;
-        // var newArr1 = arr.filter(function(element, index1, self1) {
+// function pair(arr, k) {
+//     if (arr.length <= 1) {
+//         return 0;
+//     } else if (k === 0) { //相同的值大于等于两个
+//         var arr1 = [];
+//         for (var k = 0; k < arr.length; k++) {
+//             if (arr.indexOf(arr[k]) !== -1 && arr.lastIndexOf(arr[k]) !== -1) {
+//                 if (arr.indexOf(arr[k]) !== arr.lastIndexOf(arr[k])) {
+//                     arr1.push(arr[k]);
+//                 }
+//             }
+//         }
+//         return arr1.length;
+//         // var newArr1 = arr.filter(function(element, index1, self1) {
 
-        // });
-        // console.log(newArr1);
-        // return newArr1.length;
-    }
-    var newArr2 = arr.filter(function(ele, index2, self) {
-        return self.indexOf(ele) === index2;
-    }); //删除数组重复元素；
-    // console.log(newArr);
-    var count = 0;
-    for (var i = 0; i < newArr2.length - 1; i++) {
-        for (var j = i + 1; j < newArr2.length; j++) {
-            if (Math.abs(newArr2[i] - newArr2[j]) === k) {
-                count++;
-            }
-        }
-    }
-    return count;
+//         // });
+//         // console.log(newArr1);
+//         // return newArr1.length;
+//     }
+//     var newArr2 = arr.filter(function(ele, index2, self) {
+//         return self.indexOf(ele) === index2;
+//     }); //删除数组重复元素；
+//     // console.log(newArr);
+//     var count = 0;
+//     for (var i = 0; i < newArr2.length - 1; i++) {
+//         for (var j = i + 1; j < newArr2.length; j++) {
+//             if (Math.abs(newArr2[i] - newArr2[j]) === k) {
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// }
+// console.log(pair([1, 1, 1, 1, 1], 0));
+function diff(arr) {
+    return arr.filter(function(ele, index1, self) {
+        return self.indexOf(ele) === self.lastIndexOf(ele);
+    });
 }
-console.log(pair([1, 1, 1, 1, 1], 0));
+console.log(diff([1]))

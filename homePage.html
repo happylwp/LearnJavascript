@@ -172,6 +172,20 @@
         <img src="images/1.png" />
         <span class="a-btn-text">苹果商店提供出售</span>
     </a>
+    <script>
+        var Calculator = function(eq) {
+            var eqCt1 = document.getElementById(eq);
+            return {
+                add: function(x, y) {
+                    var val = x + y;
+                    eqCt1.innerText = val;
+                }
+            };
+        };
+
+        var calculator = new Calculator('eq');
+        calculator.add(2, 2);
+    </script>
 </body>
 
 </html>

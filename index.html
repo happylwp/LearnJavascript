@@ -209,118 +209,238 @@ form {
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>计算器</title>
-<style type="text/css">
-* {
-    margin: 0px;
-    padding: 0px;
-}
- 
-td {
-    background-color: #303133;
-    width: 100px;
-    height: 80px;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-}
- 
-.td_orange {
-    background-color: #FA6F14;
-}
-</style>
- 
-<script type="text/javascript">
- 
-    function appContent(td){
-        //找到显示字符串等式的td标签
-        var content = document.getElementById("content");
-        //找到显示结果的td标签
-        var result = document.getElementById("result");
-        //获取字符串的等式
-        var text = td.innerText;
- 
-        //如果是删除键
-        if("del" == text){
-            if(content.innerText.length > 0){
-                //删除最后一个字符
-                content.innerText = content.innerText.substring(0,content.innerText.length-1);
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>计算器</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        td {
+            background-color: #303133;
+            width: 100px;
+            height: 80px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .td_orange {
+            background-color: #FA6F14;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function Stack() {
+            var items = [];
+            this.push = function(element) {
+                items.push(element);
+            };
+            this.pop = function() {
+                return items.pop();
+            };
+            this.peek = function() {
+                return items[items.length - 1];
+            };
+            this.isEmpty = function() {
+                return items.length == 0;
+            };
+            this.size = function() {
+                return items.length;
+            };
+            this.clear = function() {
+                items = [];
+            };
+            this.print = function() {
+                console.log(items.toString());
+            };
+            this.toString = function() {
+                return items.toString();
+            };
+        }
+
+        function Vertex(label) //表示一个顶点
+        {
+            this.label = label;
+            this.wasVisited = false; //此顶点是否被访问过  
+        }
+
+        //图的邻接矩阵实现  
+        function Graph() {
+            var MAX_VERTS = 20;
+            var vertexList = []; // 存放顶点的数组  
+            var adjMat; // 邻接矩阵  
+            var nVerts = 0; // 当前的顶点数  
+            var theStack = new Stack();
+
+
+
+            adjMat = new Array(MAX_VERTS);
+
+            for (var y = 0; y < MAX_VERTS; y++) {
+                adjMat[y] = new Array();
+                for (var x = 0; x < MAX_VERTS; x++)
+                    adjMat[y][x] = 0;
             }
-        //如果是全部删除
-        }else if("c" == text){
-            content.innerText = "";
-        //如果是按了等于号
-        }else if("=" == text){
-            var resultText = parse(content.innerText);
-            result.innerText = content.innerText + "=" + resultText;
-            content.innerText = "";
-        //除了上面三种情况,其他的都是尾加
-        }else{
-            content.innerText = content.innerText + text;
-        }
-         
-    }
- 
-   /**
-    * 解析字符串的等式为一个正确的结果
-    */
-    function parse(content){
- 
-        //寻找最后一个左括号
-        var index = content.lastIndexOf("(");
- 
-        //如果等式中有左括号
-        if(index > -1){
-            //寻找右括号,从左括号的位置开始寻找
-            var endIndex = content.indexOf(")",index);
- 
-            //如果等式中有右括号
-            if(endIndex > -1){
-                //调用自己算出括号中的结果
-                var result = parse(content.substring(index + 1,endIndex));
-                //然后继续调用自己,
-                //其实这里完成的工作就是"2+3+(2+3*2)"转化成了"2+3+8",也就是用括号中的结果替换括号所在位置
-                return parse(content.substring(0,index) + ("" + result) + content.substring(endIndex + 1)) 
+
+
+
+            this.addVertex = function(lab) //在图中添加一个顶点  
+                {
+                    vertexList[nVerts++] = new Vertex(lab);
+                }
+
+            //在图中增加一条边  
+            this.addEdge = function(start, end) {
+                adjMat[start][end] = 1;
+                adjMat[end][start] = 1;
+            }
+
+            //显示顶点v  
+
+            var displayVertex = function(v) {
+                console.log((vertexList[v].label + "<br>"));
+            }
+
+            //深度优先遍历图 （栈实现） 
+            this.dfs = function() // depth-first search  
+                { // 从顶点 vertexList[0]开始搜索  
+                    vertexList[0].wasVisited = true; //标记已访问过  
+                    displayVertex(0);
+                    theStack.push(0); // 进栈  
+
+                    while (!theStack.isEmpty()) {
+                        // 查看栈顶元素，看其是否有未访问过的邻接点  
+                        var v = getAdjUnvisitedVertex(theStack.peek());
+                        if (v == -1) // 没有  
+                            theStack.pop(); //出栈  
+                        else //有  
+                        {
+                            vertexList[v].wasVisited = true; // 访问v  
+                            displayVertex(v);
+                            theStack.push(v); // 进栈  
+                        }
+                    }
+
+
+                    for (var j = 0; j < nVerts; j++) //为了继续使用DFS，重置所有顶点的标志  
+                        vertexList[j].wasVisited = false;
+                }
+
+            //从邻接矩阵中判断顶点v是否有未访问过的邻接点  
+            var getAdjUnvisitedVertex = function(v) {
+                for (var j = 0; j < nVerts; j++)
+                    if (adjMat[v][j] == 1 && vertexList[j].wasVisited == false)
+                        return j;
+                return -1;
             }
         }
- 
-        index = content.indexOf("+");
-         
-        if(index > -1){
-            return parse(content.substring(0,index)) + parse(content.substring(index + 1));
+
+
+        var theGraph = new Graph();
+        theGraph.addVertex('A'); // 0  (start for dfs)  
+        theGraph.addVertex('B'); // 1  
+        theGraph.addVertex('C'); // 2  
+        theGraph.addVertex('D'); // 3  
+        theGraph.addVertex('E'); // 4  
+
+        theGraph.addEdge(0, 1); // AB  
+        theGraph.addEdge(1, 2); // BC  
+        theGraph.addEdge(0, 3); // AD  
+        theGraph.addEdge(3, 4); // DE  
+
+        console.log(("Visits: " + "<br>"));
+        theGraph.dfs();
+
+        function appContent(td) {
+            //找到显示字符串等式的td标签
+            var content = document.getElementById("content");
+            //找到显示结果的td标签
+            var result = document.getElementById("result");
+            //获取字符串的等式
+            var text = td.innerText;
+
+            //如果是删除键
+            if ("del" == text) {
+                if (content.innerText.length > 0) {
+                    //删除最后一个字符
+                    content.innerText = content.innerText.substring(0, content.innerText.length - 1);
+                }
+                //如果是全部删除
+            } else if ("c" == text) {
+                content.innerText = "";
+                //如果是按了等于号
+            } else if ("=" == text) {
+                var resultText = parse(content.innerText);
+                result.innerText = content.innerText + "=" + resultText;
+                content.innerText = "";
+                //除了上面三种情况,其他的都是尾加
+            } else {
+                content.innerText = content.innerText + text;
+            }
+
         }
- 
-        index = content.lastIndexOf("-");
- 
-        if(index > -1){
-            return parse(content.substring(0,index)) - parse(content.substring(index + 1));
+
+        /**
+         * 解析字符串的等式为一个正确的结果
+         */
+        function parse(content) {
+
+            //寻找最后一个左括号
+            var index = content.lastIndexOf("(");
+
+            //如果等式中有左括号
+            if (index > -1) {
+                //寻找右括号,从左括号的位置开始寻找
+                var endIndex = content.indexOf(")", index);
+
+                //如果等式中有右括号
+                if (endIndex > -1) {
+                    //调用自己算出括号中的结果
+                    var result = parse(content.substring(index + 1, endIndex));
+                    //然后继续调用自己,
+                    //其实这里完成的工作就是"2+3+(2+3*2)"转化成了"2+3+8",也就是用括号中的结果替换括号所在位置
+                    return parse(content.substring(0, index) + ("" + result) + content.substring(endIndex + 1))
+                }
+            }
+
+            index = content.indexOf("+");
+
+            if (index > -1) {
+                return parse(content.substring(0, index)) + parse(content.substring(index + 1));
+            }
+
+            index = content.lastIndexOf("-");
+
+            if (index > -1) {
+                return parse(content.substring(0, index)) - parse(content.substring(index + 1));
+            }
+
+            index = content.lastIndexOf("*");
+
+            if (index > -1) {
+                return parse(content.substring(0, index)) * parse(content.substring(index + 1));
+            }
+
+            index = content.lastIndexOf("/");
+
+            if (index > -1) {
+                return parse(content.substring(0, index)) / parse(content.substring(index + 1));
+            }
+
+            if ("" == content) {
+                return 0;
+            } else {
+                return content - 1 + 1;
+            }
         }
- 
-        index = content.lastIndexOf("*");
- 
-        if(index > -1){
-            return parse(content.substring(0,index)) * parse(content.substring(index + 1));
-        }
- 
-        index = content.lastIndexOf("/");
- 
-        if(index > -1){
-            return parse(content.substring(0,index)) / parse(content.substring(index + 1));
-        }
-         
-        if("" == content){ 
-            return 0;
-        }else{
-            return content - 1 + 1;
-        }
-    }
-    
-     
-</script>
- 
+    </script>
+
 </head>
+
 <body>
     <table align="center">
         <tr>
@@ -359,4 +479,5 @@ td {
         </tr>
     </table>
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 // 对象处理
 //JavaScript对象是动态的，可以新增，也可以删除；
 // var xiaoming = {
@@ -1137,9 +1137,348 @@
 //     return count;
 // }
 // console.log(pair([1, 1, 1, 1, 1], 0));
-function diff(arr) {
-    return arr.filter(function(ele, index1, self) {
-        return self.indexOf(ele) === self.lastIndexOf(ele);
-    });
+// function diff(arr) {
+//     return arr.filter(function(ele, index1, self) {
+//         return self.indexOf(ele) === self.lastIndexOf(ele);
+//     });
+// }
+// console.log(diff([1]))
+
+// const person = Object.freeze({
+//     name: "loner11",
+//     age: 30
+// });
+// // person.name = "loner11";
+// // person.age = 30;
+// // person.age = 40;
+// console.log(person.name);
+// console.log(person.age);
+// console.log(person);
+
+// var constantize = (obj) => {
+//     Object.freeze(obj);
+//         Object.keys(obj).forEach((key, value) => {
+//             if (typeof obj[key] === 'object') {
+//                 constantize(obj[key]);
+//             }
+//         });
+// }
+
+// import * as variant from './operationDom';
+// console.log(variant.intvariantName);
+// console.log(variant.FloatvariantName);
+// console.log(variant.CharvariantName);
+
+// function foo(a) {
+//     var b = a * 2;
+
+//     function bar(c) {
+//         console.log(a, b, c);
+//     }
+//     bar(b * 3);
+// }
+// foo(2);
+
+// var obj = {
+//     a: 1,
+//     b: 2,
+//     c: 3
+// };
+// // obj.a = 2;
+// // obj.b = 3;
+// // obj.c = 4;
+
+// with(obj) {
+//     a = 2;
+//     b = 3;
+//     c = 4;
+// }
+
+// function foo(obj) {
+//     with(obj) {
+//         a = 2;
+//     }
+// }
+// var o1 = {
+//     a: 3
+// };
+// var o2 = {
+//     b: 3
+// };
+// foo(o1);
+// console.log(o1.a + " " + "1");
+
+// foo(o2);
+// console.log(o2.a + " " + "2");
+// console.log(a + " " + "3");
+
+// function foo(a){
+//     var b=2;
+
+//     function bar(){
+
+//     }
+
+//     var c=3;
+// }
+
+// function doSomething(a) {
+//     b = a + doSomethingElse(a * 2);
+//     console.log(b * 3);
+// }
+
+// function doSomethingElse(a) {
+//     return a - 1;
+// }
+// var b;
+// doSomething(2);
+
+// function doSomething(a) {
+//     function doSomethingElse(a) {
+//         return a - 1;
+//     }
+//     var b;
+//     b = a + doSomethingElse(a * 2);
+//     console.log(b * 3);
+// }
+// doSomething(2);
+
+// var a = 2;
+// (function foo() {
+//     var a = 3;
+//     console.log(a);
+// })();
+// console.log(a);
+
+// setTimeout(function() {
+//     console.log("I waited 1 second");
+// }, 1000);
+
+// function makeCount() {
+//     var i = 0;
+//     return function() {
+//         console.log(++i);
+//     }
+// }
+// var counter = makeCount();
+// counter();
+// counter();
+
+// var counter2 = makeCount();
+// counter2();
+// counter2();
+
+// var i = function() { return 10; }();
+// true && function() {}();
+// 0,
+// function() {}();
+
+// var elems = 10;
+// for (var i = 0; i < elems.length; i++) {
+//     elems[i].addEventListener('click', function(e) {
+//         e.preventDefault();
+//         console.log("I am link #" + i);
+//     }, 'false');
+// }
+
+// var elems = document.getElementsByTagName('a');
+// for (var i = 0; i < elems.length; i++) {
+//     (function(locakedIndex) {
+//         elems[i].addEventListener('click', function(e) {
+//             e.preventDefault();
+//             console.log("I am link #" + i);
+//         }, 'false')
+//     })(i);
+// }
+
+// var elems = document.getElementsByTagName('a');
+// for (var i = 0; i < elems.length; i++) {
+//     elems[i].addEventListener('click', (function(lockedInIndex) {
+//         return function(e) {
+//             e.preventDefault();
+//             console.log("I am link #" + i);
+//         };
+//     })(i), 'false');
+// }
+
+// 一般函数递归调用
+// function factorial(n) {
+//     if (n <= 1) {
+//         return 1;
+//     } else {
+//         return n * factorial(n - 1);
+//     }
+// }
+// console.log(factorial(5));
+
+// 匿名函数递归调用
+// const factorial = function(n) {
+//     if (n <= 1) {
+//         return 1;
+//     } else {
+//         return n * factorial(n - 1);
+//     }
+// }
+// console.log(factorial(5));
+
+// (function(f) {
+//     console.log(f(10));
+// })(function(n) {
+//     if (n <= 1) {
+//         return 1;
+//     } else {
+//         return n * arguments.callee(n - 1);
+//     }
+// })
+
+// function factorial(n) {
+//     return !(n > 1) ? 1 : factorial(n - 1) * n;
+// }
+// console.log([1, 2, 3, 4, 5].map(factorial));
+
+// var newArr = [1, 2, 3, 4, 5].map(function(n) {
+//     return !(n > 1) ? 1 : arguments.callee(n - 1) * n;
+// });
+// console.log(newArr)
+// function create() {
+//     return function(n) {
+//         if (n <= 1)
+//             return 1;
+//         return n * arguments.callee(n - 1);
+//     }
+// }
+// var result = create();
+// console.log(result(5));
+
+// function createPerson(sIdentity) {
+//     var oPerson = new Function("alert(arguments.callee.identity);");
+//     oPerson.identity = sIdentity;
+//     return oPerson;
+// }
+// var john = createPerson("John Smith");
+// console.log(john());
+
+// const fact = (n) => n < 1 ? 1 : n * fact(n - 1);
+// console.log(fact(5));
+
+// //
+// const fact_gen = (self) => (n) => n <= 1 ? 1 : n * self(n - 1);
+// console.log(fact_gen(fact)(5));
+
+
+// //讲递归方法与参数都传入递归方法
+// const fact1 = (self, n) => n < 1 ? 1 : n * self(self, n - 1);
+// console.log(fact1(fact1, 5));
+
+// //讲fact1柯理化得到fact2;
+// const fact2 = (self) => (n) => n <= 1 ? 1 : n * self(self)(n - 1)
+// console.log(fact2(fact2)(5));
+
+
+// var a = [
+//     "Hydrogen",
+//     "Helium",
+//     "Lithium",
+//     "Beryl­lium"
+// ];
+// var a2 = a.map(function(s) {
+//     return s.length;
+// })
+// var a3 = a.map(s => s.length)
+// console.log(a2);
+// console.log(a3)
+
+// function Person() {
+//     this.age = 0;
+//     setInterval(function growUp() {
+//         this.age++;
+//     }, 1000);
+// }
+// var p = new Person();
+
+// function Person() {
+//     var self = this;
+//     self.age = 0;
+//     setInterval(function growUp() {
+//         self.age++;
+//     }, 1000);
+// }
+// var p = new Person();
+// console.log(p);
+
+//将self(self)看作一个整体
+//作为参数传入一个新的函数，（g)=>n<1?1:n*g(n-1)
+// const fact3 = (self) => (n) => ((g) => n <= 1 ? 1 : n * g(n - 1))(self(self));
+// console.log(fact3(fact3)(5));
+
+
+// var counter = (function() {
+//     var i = 0;
+//     return {
+//         get: function() {
+//             return i;
+//         },
+//         set: function(val) {
+//             i = val;
+//         },
+//         increment: function() {
+//             return ++i;
+//         }
+//     };
+// }());
+
+// console.log(counter.get());
+// counter.set(10);
+// console.log(counter.increment());
+// console.log(counter.increment());
+
+// var Calculator = function(eq) {
+//     var eqCt1 = document.getElementById(eq);
+//     return {
+//         add: function(x, y) {
+//             var val = x + y;
+//             eqCt1.innerText = val;
+//         }
+//     };
+// };
+
+// var calculator = new Calculator('eq');
+// calculator.add(2, 2);
+
+// var blogModule = (function() {
+//     var my = {},
+//         privateName = "博客园";
+
+//     function privateAddTopic(data) {
+
+//     }
+//     my.Name = privateName;
+//     my.AddTopic = function(data) {
+//         privateAddTopic(data);
+//     }
+//     return my;
+// }());
+// var blogModule = (function(my) {
+//     var oldAddPhotoMethod = my.Addphoto;
+//     my.Addphoto = function() {
+
+//     };
+//     return my;
+// }(blogModule));
+
+// const fact4 = (self) => (n) => ((g) => (m) => m <= 1 ? 1 : m * g(m - 1))(self(self))(n);
+// console.log(fact4(fact4)(5))
+
+// const weirdFunc = (func_gen) => (self) => (n) => func_gen(self(self))(n);
+// console.log(weirdFunc(fact_gen)(weirdFunc(fact_gen))(5))
+Array.matrix = function(numrows, numcols, initial) {
+    var arr = [];
+    for (var i = 0; i < numrows; ++i) {
+        var colums = [];
+        for (var j = 0; j < numcols; ++j) {
+            colums[j] = initial;
+        }
+        arr[i] = colums;
+    }
+    return arr;
 }
-console.log(diff([1]))

@@ -1470,15 +1470,17 @@
 // console.log(fact4(fact4)(5))
 
 // const weirdFunc = (func_gen) => (self) => (n) => func_gen(self(self))(n);
-// console.log(weirdFunc(fact_gen)(weirdFunc(fact_gen))(5))
-Array.matrix = function(numrows, numcols, initial) {
-    var arr = [];
-    for (var i = 0; i < numrows; ++i) {
-        var colums = [];
-        for (var j = 0; j < numcols; ++j) {
-            colums[j] = initial;
-        }
-        arr[i] = colums;
-    }
-    return arr;
-}
+// console.log(weirdFunc(fact_gen)(weirdFunc(fact_gen))(5))\
+
+
+// Array.matrix = function(numrows, numcols, initial) {
+//     var arr = [];
+//     for (var i = 0; i < numrows; ++i) {
+//         var colums = [];
+//         for (var j = 0; j < numcols; ++j) {
+//             colums[j] = initial;
+//         }
+//         arr[i] = colums;
+//     }
+//     return arr;
+// }

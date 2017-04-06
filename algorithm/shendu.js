@@ -1,32 +1,17 @@
-// function dfs() {
-//     var maze = [
-//         [1, 1, 1, 0, 0, 0, 0, 0, 1, 1],
-//         [1, 0, 1, 0, 1, 1, 1, 0, 1, 1],
-//         [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
-//         [1, 1, 0, 0, 0, 1, 1, 1, 0, 1],
-//         [0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
-//         [0, 1, 1, 1, 0, 1, 1, 1, 1, 0],
-//         [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-//         [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-//         [0, 0, 0, 1, 1, 1, 1, 0, 1, 1],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-//     ];
-//     var fx = [1, -1, 0, 0]; //方向上下左右
-//     var fy = [0, 0, -1, 1];
-//     var total;
-//     total = 0;
-//     maze[0][0] = 3; //初始坐标值
-//     var ret = function(i, j) {
-//         var k, newi, newj;
-//         for (k = 0; k < 4; k++) { //k=0,1,2,3分别表示往上，下，左，右
-//             if (check(i, j, k)) {
-//                 newi = i + fx[k];
-//                 newj = j + fy[k];
-//                 maze[newi][newj] = 3;
-//                 arguments.callee(newi, newj);
-//             }
-//             maze[i][j] = 2;
-//         }
-//     }
-
-// }
+function fen(arr) {
+    var lanse = [];
+    var hongse = [];
+    var baisse = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === "蓝色") {
+            lanse,
+            push(arr[i]);
+        }
+        else if (arr[i] === '白色') {
+            baisse.push(arr[i]);
+        } else {
+            hongse.push(arr[i]);
+        }
+    }
+    return hongse.concat(baisse, lanse);
+}

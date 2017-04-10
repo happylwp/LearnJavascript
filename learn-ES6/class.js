@@ -117,19 +117,18 @@
 // const {printName}=logger;
 // printName();
 
-class Point{
-    
-}
+// class Point{
+// }
 
-class ColorPoint extends Point{
-    constructor(){
-        super();
-        // super(x,y);//调用父类的构造函数constructor(x,y);
-        // this.color=color;
-    }
-    // toString(){
-    //     return this.color+' '+super.toString();//调用父类的toString（）
-    // }
-}
-// let cp=new ColorPoint(); 
-console.log(new ColorPoint())
+// class ColorPoint extends Point{
+//     constructor(){
+//         super();
+//         // super(x,y);//调用父类的构造函数constructor(x,y);
+//         // this.color=color;
+//     }
+//     // toString(){
+//     //     return this.color+' '+super.toString();//调用父类的toString（）
+//     // }
+// }
+// // let cp=new ColorPoint(); 
+// console.log(new ColorPoint())

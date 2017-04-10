@@ -1484,3 +1484,31 @@
 //     }
 //     return arr;
 // }
+
+// function changeStuff(a,b,c){
+//     a=a*10;
+//     b.item="change";
+//     c={item:"changed"};
+//     return newa;
+// }
+// var num=10;
+// var obj1={item:"unchanged"};
+// var obj2={item:"unchanged"};
+// changeStuff(num,obj1,obj2);
+// console.log(num);
+// console.log(obj1.item);
+// console.log(obj2.item);
+
+// var str="abc";
+// str[0]="d";
+// console.log(str);
+
+var obj={x:1};
+obj.x=100;
+console.log(obj);
+
+var o=obj;
+console.log(o);
+o.x=1;
+console.log(obj);
+console.log(o);

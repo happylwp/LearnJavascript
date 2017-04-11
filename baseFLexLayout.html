@@ -1,0 +1,172 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .box {
+            height: 100px;
+            width: 100px;
+            padding: 10px;
+            box-shadow: 1px 1px lightgray;
+            background: whitesmoke;
+            border-radius: 4px;
+            display: flex;
+            /*justify-content: space-around;
+            flex-direction: column;
+            align-items: center;*/
+            justify-content: space-between;
+        }
+        
+        .item {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: black;
+        }
+        
+        .item:nth-child(2) {
+            align-self: center;
+        }
+        
+        .item:nth-child(3) {
+            align-self: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+</body>
+
+</html>-->
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .box {
+            height: 100px;
+            width: 100px;
+            padding: 10px;
+            box-shadow: 1px 1px lightgray;
+            background: whitesmoke;
+            border-radius: 4px;
+            display: flex;
+            flex-flow: wrap;
+            align-content: space-between;
+        }
+        
+        .column {
+            flex-basis: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .item {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="column">
+            <span class="item"></span>
+            <span class="item"></span>
+        </div>
+        <div class="column">
+            <span class="item"></span>
+            <span class="item"></span>
+        </div>
+    </div>
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+</body>
+
+</html>-->
+
+<!--使用flex完成圣杯布局-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圣杯布局->flex</title>
+    <style>
+        .HolyGrail {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        header,
+        footer {
+            flex: 1;
+        }
+        
+        .HolyGrail-body {
+            display: flex;
+            flex: 1;
+        }
+        
+        .HolyGrail-content {
+            flex: 1;
+        }
+        
+        .HolyGrail-nav,
+        .HolyGrail-ads {
+            /* 两个边栏的宽度设为12em */
+            flex: 0 0 12em;
+        }
+        
+        .HolyGrail-nav {
+            /* 导航放到最左边 */
+            order: -1;
+        }
+    </style>
+</head>
+
+<body class="HolyGrail">
+    <header>#header</header>
+
+    <div class="HolyGrail-body">
+
+        <main class="HolyGrail-content">content</main>
+
+        <nav class="HolyGrail-nav">nav</nav>
+
+        <aside class="HolyGrail-ads">ads</aside>
+
+    </div>
+
+    <footer>#footer</footer>
+
+
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+</body>
+
+</html>

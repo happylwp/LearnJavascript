@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--<ul id="list"></ul>
+    <script>
+        //向Ul插入大量无序子列表，使用事件委托
+        (() => {
+            var ndcontaine = document.getElementById('list')
+            if (!ndcontaine) {
+                return
+            }
+            for (let i = 0; i < 300; i++) {
+                const ndItem = document.createElement('li')
+                ndItem.innerText = i + 1
+                ndcontaine.appendChild(ndItem)
+            }
+            ndcontaine.addEventListener('click', function(e) {
+                const target = e.target
+                if (target.tagName === 'LI') {
+                    alert(target.innerHTML)
+                }
+            })
+        })
+    </script>-->
+
+    <!--遍历DOM树-->
+    <div class="root">
+        <div class="container">
+            <section class="sidebar">
+                <ul class="menu"></ul>
+            </section>
+            <section class="main">
+                <article class="post"></article>
+                <p class="copyright"></p>
+            </section>
+        </div>
+    </div>
+    <script>
+        const traverse = (ndRoot) => {
+            const queue = [ndRoot]
+            while (queue.length) {
+                const node = queue.shift()
+
+                printInfo(node)
+                if (!node.children.length) {
+                    continue
+                }
+                Array.from(node.children).forEach(x => queue.push(x))
+            }
+        }
+        const printInfo = (node) => {
+            console.log(node.tagName, `.${node.className}`)
+        }
+        traverse(document.querySelector('.root'))
+    </script>
+</body>
+
+</html>
